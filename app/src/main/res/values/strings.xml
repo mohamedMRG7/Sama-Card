@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">SamaCard</string>
+    <string name="facebook_application_id" translatable="false">987731024723448</string>
+    <string name="services">Services</string>
+    <string name="commercial">commercial</string>
+    <string name="industry">Industry</string>
+    <string name="farming">Farming</string>
+    <string name="add_your_card">Add Your Card</string>
+    <string name="search_for_a_card">Search for a card</string>
+    <string name="name">Name /</string>
+
 </resources>
