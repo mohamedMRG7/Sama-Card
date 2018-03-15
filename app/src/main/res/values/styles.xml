@@ -49,7 +49,7 @@
 
     <style name="textViewDataCardStyle" parent="textViewCardStyle">
 
-        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Large</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Medium</item>
 
     </style>
 

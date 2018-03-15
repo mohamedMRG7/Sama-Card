@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <array name="countrys">
+
+
+        <item >Choose your Country</item>
+        <item >Cairo</item>
+        <item >Alex</item>
+        <item >Bany sweef</item>
+    </array>
+
+    <array name="governorates">
+
+        <item>Choose your governorate</item>
+        <item>Shobra el khema</item>
+        <item>Ay 7aga</item>
+    </array>
+
+    <array name="activities">
+
+        <item>Choose Activiy</item>
+        <item>@string/commercial</item>
+        <item>@string/industry</item>
+        <item>@string/farming</item>
+        <item>@string/services</item>
+    </array>
+
+</resources>

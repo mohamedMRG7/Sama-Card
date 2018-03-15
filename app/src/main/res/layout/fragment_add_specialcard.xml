@@ -48,14 +48,14 @@
         android:hint="@string/email"
         style="@style/editTextAddCard"/>
 
-    <EditText
-        android:id="@+id/ed_country"
-        android:hint="@string/country"
-        style="@style/editTextAddCard"/>
+    <Spinner
+        android:id="@+id/sp_country"
+        style="@style/editTextAddCard"
+        android:entries="@array/countrys"/>
 
-    <EditText
-        android:id="@+id/ed_governorate"
-        android:hint="@string/governorate"
+    <Spinner
+        android:id="@+id/sp_governorate"
+        android:entries="@array/governorates"
         style="@style/editTextAddCard"/>
 
     <EditText
@@ -73,9 +73,9 @@
         android:hint="@string/company_adress"
         style="@style/editTextAddCard"/>
 
-    <EditText
+    <Spinner
         android:id="@+id/ed_activity"
-        android:hint="@string/company_activiy"
+        android:entries="@array/activities"
         style="@style/editTextAddCard"/>
 
     <EditText

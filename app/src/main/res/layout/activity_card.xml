@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/textbackground"
+    android:id="@+id/scroll"
     tools:context="com.dev.mohamed.samacard.card.CardActivity">
 
   <android.support.constraint.ConstraintLayout
@@ -41,11 +42,11 @@
           android:orientation="vertical"
           app:layout_constraintTop_toBottomOf="@+id/img_logo">
           <LinearLayout
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
               <TextView
-
+                  android:layout_gravity="center"
                   style="@style/textViewCardStyle"
                   android:text="@string/name"/>
               <TextView
@@ -58,12 +59,13 @@
 
 
           <LinearLayout
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
               <TextView
+                  android:layout_gravity="center"
                   style="@style/textViewCardStyle"
-                  android:text="Commercial Name / "/>
+                  android:text="@string/commercial_name"/>
               <TextView
                   android:id="@+id/tv_commercialName"
                   style="@style/textViewDataCardStyle"
@@ -73,12 +75,13 @@
           </LinearLayout>
 
           <LinearLayout
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
               <TextView
+                  android:layout_gravity="center"
                   style="@style/textViewCardStyle"
-                  android:text="Position / "/>
+                  android:text="@string/position"/>
               <TextView
                   android:id="@+id/tv_position"
                   style="@style/textViewDataCardStyle"
@@ -88,12 +91,13 @@
           </LinearLayout>
 
           <LinearLayout
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
               <TextView
+                  android:layout_gravity="center"
                   style="@style/textViewCardStyle"
-                  android:text="Adress / "/>
+                  android:text="@string/adress"/>
               <TextView
                   android:id="@+id/tv_adress"
                   style="@style/textViewDataCardStyle"
@@ -103,54 +107,55 @@
           </LinearLayout>
 
           <LinearLayout
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
               <TextView
+                  android:layout_gravity="center"
                   style="@style/textViewCardStyle"
-                  android:text="Office Number / "/>
+                  android:text="@string/office_number"/>
               <TextView
                   android:id="@+id/tv_telephon"
+                  android:drawableLeft="@drawable/ic_telephone"
+                  android:drawableStart="@drawable/ic_telephone"
+                  android:drawablePadding="@dimen/paddingSmall"
+                  android:textColor="@color/colorPrimaryDark"
                   style="@style/textViewDataCardStyle"
                   android:text="0244010173"
                   android:layout_gravity="center"
                   />
-              <ImageView
-                  android:id="@+id/img_telephonCall"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="center"
-                  android:background="@drawable/ic_telephone"/>
+
           </LinearLayout>
 
           <LinearLayout
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
               <TextView
+                  android:layout_gravity="center"
                   style="@style/textViewCardStyle"
-                  android:text="Direct Number / "/>
+                  android:text="@string/direct_number"/>
               <TextView
                   android:id="@+id/tv_directtelephon"
+                  android:drawableLeft="@drawable/ic_telephone"
+                  android:drawableStart="@drawable/ic_telephone"
+                  android:drawablePadding="@dimen/paddingSmall"
+                  android:textColor="@color/colorPrimaryDark"
                   style="@style/textViewDataCardStyle"
                   android:text="0109998855"
                   android:layout_gravity="center"
                   />
-              <ImageView
-                  android:id="@+id/img_directtelephonCall"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="center"
-                  android:background="@drawable/ic_telephone"/>
+
           </LinearLayout>
 
           <LinearLayout
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
               <TextView
+                  android:layout_gravity="center"
                   style="@style/textViewCardStyle"
-                  android:text="About Activity / "/>
+                  android:text="@string/about_activity"/>
               <TextView
                   android:id="@+id/tv_aboutactivity"
                   style="@style/textViewDataCardStyle"
@@ -189,6 +194,7 @@
                   android:background="@drawable/ic_email"/>
               <TextView
                   android:id="@+id/tv_email"
+
                   style="@style/textViewCardStyle"
                   android:textColor="@color/blue"
                   android:text="mohamad1325@gmail.com"/>

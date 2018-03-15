@@ -27,7 +27,6 @@
 
         <activity
             android:name=".card.CardActivity"
-            android:screenOrientation="landscape"
             android:theme="@style/CardThem" />
         <activity
             android:name=".addCard.AddCardActivity"

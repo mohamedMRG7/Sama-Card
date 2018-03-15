@@ -7,7 +7,7 @@
     <string name="farming">Farming</string>
     <string name="add_your_card">Add Your Card</string>
     <string name="search_for_a_card">Search for a card</string>
-    <string name="name">Name /</string>
+    <string name="name">Name</string>
     <string name="choose_your_picture_or_company_logo">Choose your picture or company logo</string>
     <string name="userName">Name</string>
     <string name="company_name">Company Name</string>
@@ -16,7 +16,6 @@
     <string name="company_activiy">Company Activiy</string>
     <string name="about_activiy">About Activiy</string>
     <string name="official_number">Official Number</string>
-    <string name="direct_number">Direct Number</string>
     <string name="email">Email</string>
     <string name="facebook_page">FaceBook Page</string>
     <string name="website">WebSite</string>
@@ -26,5 +25,11 @@
     <string name="or">OR</string>
     <string name="normal_card">Normal Card</string>
     <string name="spicial_card">Special Card</string>
+    <string name="commercial_name">Commercial Name</string>
+    <string name="position">Position</string>
+    <string name="adress">Adress</string>
+    <string name="office_number">Office Number</string>
+    <string name="about_activity">About Activity</string>
+    <string name="direct_number">Direct Number</string>
 
 </resources>
