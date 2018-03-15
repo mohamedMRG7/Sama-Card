@@ -8,5 +8,23 @@
     <string name="add_your_card">Add Your Card</string>
     <string name="search_for_a_card">Search for a card</string>
     <string name="name">Name /</string>
+    <string name="choose_your_picture_or_company_logo">Choose your picture or company logo</string>
+    <string name="userName">Name</string>
+    <string name="company_name">Company Name</string>
+    <string name="company_adress">Company Adress</string>
+    <string name="position_in_company">Position in Company</string>
+    <string name="company_activiy">Company Activiy</string>
+    <string name="about_activiy">About Activiy</string>
+    <string name="official_number">Official Number</string>
+    <string name="direct_number">Direct Number</string>
+    <string name="email">Email</string>
+    <string name="facebook_page">FaceBook Page</string>
+    <string name="website">WebSite</string>
+    <string name="whatsapp">Whatsapp</string>
+    <string name="country">Country</string>
+    <string name="governorate">Governorate</string>
+    <string name="or">OR</string>
+    <string name="normal_card">Normal Card</string>
+    <string name="spicial_card">Special Card</string>
 
 </resources>

@@ -1,13 +1,16 @@
 package com.dev.mohamed.samacard;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.dev.mohamed.samacard.adapters.MainRecyclerAdapter;
+import com.dev.mohamed.samacard.addCard.AddCardActivity;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-       setupRecycler(rvCommercial);
+        setupRecycler(rvCommercial);
         setupRecycler(rvFarming);
         setupRecycler(rvIndustry);
         setupRecycler(rvServices);
@@ -49,5 +52,19 @@ public class MainActivity extends AppCompatActivity {
        getMenuInflater().inflate(R.menu.menu,menu);
 
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        int id=item.getItemId();
+        switch (id)
+        {
+            case R.id.menu_add:
+                startActivity(new Intent(MainActivity.this, AddCardActivity.class));
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

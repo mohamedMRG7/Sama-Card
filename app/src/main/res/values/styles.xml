@@ -52,4 +52,16 @@
         <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Large</item>
 
     </style>
+
+    <style name="editTextAddCard" >
+        <item name="android:layout_margin">@dimen/paddingSmall</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">300dp</item>
+    </style>
+
+
+    <style name="NoTitleDialog" parent="@style/Theme.AppCompat.Light.Dialog">
+        <item name="windowNoTitle">true</item>
+
+    </style>
 </resources>
