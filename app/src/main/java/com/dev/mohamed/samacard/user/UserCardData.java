@@ -9,6 +9,7 @@ import android.os.Parcelable;
 
 public class UserCardData implements Parcelable {
 
+    private String userId;
     private String userName;
     private String companyName;
     private String positionName;
@@ -24,13 +25,12 @@ public class UserCardData implements Parcelable {
     private String country;
     private String governorate;
     private String cardType;
+    private String photoLink;
 
 
-    public UserCardData(String userName, String companyName, String positionName,
-                        String address, String officeNumber, String directCallNum, String activity,
-                        String aboutActivity, String email, String facebookAcount,
-                        String webSite, String whatsApp, String country, String governorate, String cardType) {
-
+    public UserCardData(String userId, String userName, String companyName, String positionName, String address, String officeNumber, String directCallNum,
+                        String activity, String aboutActivity, String email, String facebookAcount, String webSite, String whatsApp, String country, String governorate,String photoLink, String cardType) {
+        this.userId = userId;
         this.userName = userName;
         this.companyName = companyName;
         this.positionName = positionName;
@@ -45,12 +45,12 @@ public class UserCardData implements Parcelable {
         this.whatsApp = whatsApp;
         this.country = country;
         this.governorate = governorate;
-        this.cardType=cardType;
+        this.cardType = cardType;
+        this.photoLink=photoLink;
     }
 
-
     public UserCardData(String userName, String companyName, String address, String officeNumber
-            , String activity, String country, String governorate, String cardType) {
+            , String activity, String country, String governorate, String cardType,String photoLink,String userId) {
         this.userName = userName;
         this.companyName = companyName;
         this.address = address;
@@ -59,6 +59,16 @@ public class UserCardData implements Parcelable {
         this.country = country;
         this.governorate = governorate;
         this.cardType = cardType;
+        this.userId=userId;
+        this.photoLink=photoLink;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getPhotoLink() {
+        return photoLink;
     }
 
     public String getUserName() {
@@ -146,6 +156,8 @@ public class UserCardData implements Parcelable {
         dest.writeString(this.country);
         dest.writeString(this.governorate);
         dest.writeString(this.cardType);
+        dest.writeString(this.userId);
+        dest.writeString(this.photoLink);
     }
 
     protected UserCardData(Parcel in) {
@@ -164,6 +176,8 @@ public class UserCardData implements Parcelable {
         this.country = in.readString();
         this.governorate = in.readString();
         this.cardType = in.readString();
+        this.userId = in.readString();
+        this.photoLink = in.readString();
     }
 
     public static final Creator<UserCardData> CREATOR = new Creator<UserCardData>() {

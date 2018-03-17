@@ -11,7 +11,7 @@
     <string name="choose_your_picture_or_company_logo">Choose your picture or company logo</string>
     <string name="userName">Name</string>
     <string name="company_name">Company Name</string>
-    <string name="company_adress">Company Adress</string>
+    <string name="company_adress">Company Address</string>
     <string name="position_in_company">Position in Company</string>
     <string name="company_activiy">Company Activiy</string>
     <string name="about_activiy">About Activiy</string>
@@ -27,9 +27,10 @@
     <string name="spicial_card">Special Card</string>
     <string name="commercial_name">Commercial Name</string>
     <string name="position">Position</string>
-    <string name="adress">Adress</string>
+    <string name="adress">Address</string>
     <string name="office_number">Office Number</string>
     <string name="about_activity">About Activity</string>
     <string name="direct_number">Direct Number</string>
-
+    <string name="not_available">Not Available</string>
+    <string name="special_type">special</string>
 </resources>

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<ScrollView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:excludeFromRecents="true"
@@ -40,6 +44,7 @@
    <EditText
        android:id="@+id/ed_userName"
        android:hint="@string/userName"
+
        style="@style/editTextAddCard"/>
 
     <EditText
@@ -74,7 +79,7 @@
         style="@style/editTextAddCard"/>
 
     <Spinner
-        android:id="@+id/ed_activity"
+        android:id="@+id/sp_activity"
         android:entries="@array/activities"
         style="@style/editTextAddCard"/>
 
@@ -86,11 +91,13 @@
     <EditText
         android:id="@+id/ed_officialNum"
         android:hint="@string/official_number"
+        android:inputType="phone"
         style="@style/editTextAddCard"/>
 
     <EditText
         android:id="@+id/ed_directNum"
         android:hint="@string/direct_number"
+        android:inputType="phone"
         style="@style/editTextAddCard"/>
 
 
@@ -108,6 +115,7 @@
     <EditText
         android:id="@+id/whatsapp"
         android:hint="@string/whatsapp"
+        android:inputType="phone"
         style="@style/editTextAddCard"/>
 
 
@@ -144,3 +152,4 @@
 </LinearLayout>
 
 </ScrollView>
+</layout>

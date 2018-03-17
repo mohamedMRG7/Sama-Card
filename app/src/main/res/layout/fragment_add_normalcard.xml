@@ -78,6 +78,7 @@
         <EditText
             android:id="@+id/ed_officialNum"
             android:hint="@string/official_number"
+            android:inputType="phone"
             style="@style/editTextAddCard"/>
 
 
