@@ -33,4 +33,6 @@
     <string name="direct_number">Direct Number</string>
     <string name="not_available">Not Available</string>
     <string name="special_type">special</string>
+    <string name="add_card_error">There are proplem while adding card , Please Check connection and try again</string>
+    <string name="add_card_succes">Your Card successfully added</string>
 </resources>

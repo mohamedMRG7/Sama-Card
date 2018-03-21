@@ -32,6 +32,12 @@
             android:name=".addCard.AddCardActivity"
 
             android:theme="@style/NoTitleDialog"/>
+
+
+        <provider
+            android:authorities="com.dev.mohamed.samacard"
+            android:name=".contentProvider.CardsContentProvider"
+            android:exported="false"/>
     </application>
 
 </manifest>

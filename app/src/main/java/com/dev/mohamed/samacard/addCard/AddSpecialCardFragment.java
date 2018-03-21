@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.dev.mohamed.samacard.R;
@@ -44,21 +45,13 @@ public class AddSpecialCardFragment extends Fragment {
         View view = specialcardBinding.getRoot();
 
         mAddspecialCard.specialCard(specialcardBinding);
-        specialcardBinding.spCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position!=0)
-                parent.setBackgroundColor(getResources().getColor(R.color.wihte));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
 
-        specialcardBinding.edUserName.setText("Mohamed");
+        setUpspinnerLisner(specialcardBinding.spGovernorate);
+        setUpspinnerLisner(specialcardBinding.spCountry);
+        setUpspinnerLisner(specialcardBinding.spActivity);
+
+
 
         return view;
     }
@@ -71,6 +64,22 @@ public class AddSpecialCardFragment extends Fragment {
         void specialCard(FragmentAddSpecialcardBinding binding);
     }
 
+
+    private void setUpspinnerLisner(Spinner spinner)
+    {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position!=0)
+                    parent.setBackgroundColor(getResources().getColor(R.color.wihte));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
 
 
 }

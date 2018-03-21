@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.dev.mohamed.samacard.user.UserCardData;
 import com.firebase.ui.auth.AuthUI;
 
 import com.dev.mohamed.samacard.MainActivity;
@@ -24,6 +26,8 @@ import com.zplesac.connectionbuddy.models.ConnectivityState;
 import java.io.Serializable;
 import java.util.Arrays;
 
+import timber.log.Timber;
+
 public class AuthinticationActivity extends AppCompatActivity implements Serializable, ConnectivityChangeListener {
 
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -31,7 +35,8 @@ public class AuthinticationActivity extends AppCompatActivity implements Seriali
     private FirebaseAuth firebaseAuth;
 
     FirebaseUser firebaseuser;
-    public static final String AUTHKEY="authkey";
+    public static final String USER_DATA_KEY="userdata";
+
     private boolean isConnected=false;
     private boolean trytoOut=false;
     TextView connectiontxt;
@@ -62,8 +67,12 @@ public class AuthinticationActivity extends AppCompatActivity implements Seriali
 
 
                     Intent intent=new Intent(AuthinticationActivity.this,MainActivity.class);
-                    intent.putExtra("activity","authactivity");
-                    //intent.putExtra(AUTHKEY,userJokes);
+                    UserCardData cardData=new UserCardData();
+                    cardData.setEmail(user.getEmail());
+                    cardData.setPhotoLink(user.getPhotoUrl().toString());
+                    cardData.setUserId(user.getUid());
+                    cardData.setUserName(user.getDisplayName());
+                    intent.putExtra(USER_DATA_KEY,cardData);
                     startActivity(intent);
                     finish();
                 }else
@@ -116,8 +125,13 @@ public class AuthinticationActivity extends AppCompatActivity implements Seriali
                 firebaseuser=firebaseAuth.getCurrentUser();
 
                 Intent intent=new Intent(AuthinticationActivity.this,MainActivity.class);
-               // intent.putExtra(AUTHKEY,userJokes);
-                intent.putExtra("activity","authactivity");
+                UserCardData cardData=new UserCardData();
+                cardData.setEmail(firebaseuser.getEmail());
+                cardData.setPhotoLink(firebaseuser.getPhotoUrl().toString());
+                cardData.setUserId(firebaseuser.getUid());
+                cardData.setUserName(firebaseuser.getDisplayName());
+                intent.putExtra(USER_DATA_KEY,cardData);
+
                 startActivity(intent);
                 finish();
 

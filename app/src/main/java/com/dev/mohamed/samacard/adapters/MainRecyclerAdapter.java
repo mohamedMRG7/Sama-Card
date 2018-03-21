@@ -2,7 +2,9 @@ package com.dev.mohamed.samacard.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import com.dev.mohamed.samacard.R;
 import com.dev.mohamed.samacard.card.CardActivity;
+import com.dev.mohamed.samacard.sqliteDb.DbContract;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
@@ -32,7 +35,13 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             ,"https://scontent-cai1-1.xx.fbcdn.net/v/t1.0-9/20663974_1420864141324114_7824265645260496196_n.jpg?oh=17b77b029c750fcd14d0508130c8a749&oe=5B0B9592"};
 
     String [] names={"Mohamed Ragab","Ahmed bo7sen","Mahmoud ahmed","Mos3ad ebrahem","Saud elsayed"};
+    Cursor cursor;
     Context context;
+
+    public MainRecyclerAdapter(Cursor cursor) {
+        this.cursor = cursor;
+    }
+
     @Override
     public MainRecycelerAdapterViewholder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -47,6 +56,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
     @Override
     public void onBindViewHolder(MainRecycelerAdapterViewholder holder, int position) {
+
 
         Picasso.with(context).load(images[position]).into(holder.logo);
         holder.userName.setText(names[position]);
@@ -73,5 +83,12 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             Intent intent=new Intent(context, CardActivity.class);
             context.startActivity(intent);
         }
+    }
+
+
+    public void updateCursor(Cursor cursor)
+    {
+        this.cursor=cursor;
+        notifyDataSetChanged();
     }
 }

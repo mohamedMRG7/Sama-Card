@@ -63,6 +63,22 @@ public class UserCardData implements Parcelable {
         this.photoLink=photoLink;
     }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setFacebookAcount(String facebookAcount) {
+        this.facebookAcount = facebookAcount;
+    }
+
     public String getUserId() {
         return userId;
     }
@@ -129,6 +145,11 @@ public class UserCardData implements Parcelable {
 
     public String getCardType() {
         return cardType;
+    }
+
+
+    public void setPhotoLink(String photoLink) {
+        this.photoLink = photoLink;
     }
 
     public UserCardData() {
