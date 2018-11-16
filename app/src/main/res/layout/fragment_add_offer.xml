@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout android:orientation="vertical"
+	android:tag="layout/fragment_add_offer"
+	android:background="@drawable/textbackground"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	>
+
+    <Button  
+				android:layout_gravity="center_horizontal"  
+				android:id="@+id/bt_addOffer"
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"  
+				android:layout_marginTop="@dimen/paddingLarge"  
+				android:text="@string/add_your_offer" />
+
+
+    <ImageView  
+				android:layout_gravity="center"  
+				android:id="@+id/img_offer"  
+				android:visibility="gone"  
+				android:layout_width="300dp"  
+				android:layout_height="200dp"  
+				android:layout_marginTop="@dimen/paddingMedium" />
+
+
+    <TextView  
+				android:padding="@dimen/paddingMedium"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"  
+				android:text="@string/please_add_your_offer_image_and_be_sure_to_be_have_all_the_offer_data_and_logo" />
+
+
+    <LinearLayout  
+				android:layout_gravity="center"  
+				android:orientation="horizontal"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content">
+
+        <at.markushi.ui.CircleButton  
+				android:id="@+id/bt_acceptOffer"  
+				android:layout_width="64dp"  
+				android:layout_height="64dp"  
+				android:layout_margin="@dimen/paddingSmall"  
+				android:src="@drawable/ic_tick"  
+				app:cb_color="#ff99cc00"  
+				app:cb_pressedRingWidth="8dp"   />
+
+
+        <at.markushi.ui.CircleButton  
+				android:id="@+id/bt_cancel"  
+				android:layout_width="64dp"  
+				android:layout_height="64dp"  
+				android:layout_margin="@dimen/paddingSmall"  
+				android:src="@drawable/ic_unchecked"  
+				app:cb_color="#fff44336"  
+				app:cb_pressedRingWidth="8dp"   />
+
+
+    </LinearLayout>
+
+</LinearLayout>
+</layout>

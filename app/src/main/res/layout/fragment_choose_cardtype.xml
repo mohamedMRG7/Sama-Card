@@ -1,89 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:excludeFromRecents="true"
-    android:background="@drawable/textbackground">
 
-<ScrollView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+<android.support.v4.widget.NestedScrollView  
+				android:excludeFromRecents="true"  
+				android:background="@drawable/textbackground"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"
+  				xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_margin="@dimen/paddingMedium"
-        android:layout_height="wrap_content">
+    <ScrollView  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content">
+
+        <LinearLayout  
+				android:orientation="vertical"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"  
+				android:layout_margin="@dimen/paddingMedium">
+
+            <ImageView  
+				android:layout_gravity="center"  
+				android:id="@+id/img_specialcard"  
+				android:background="@drawable/ic_card"  
+				android:layout_width="250dp"  
+				android:layout_height="200dp" />
 
 
-        <ImageView
-            android:id="@+id/img_specialcard"
-            android:background="@drawable/ic_card"
-            android:layout_width="300dp"
-            android:layout_height="200dp" />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            <LinearLayout  
+				android:layout_gravity="center"  
+				android:orientation="horizontal"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content">
 
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:text="@string/spicial_card"/>
-            <ImageView
-                android:id="@+id/img_specialIllustrat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/paddingSmall"
-                android:layout_marginStart="@dimen/paddingSmall"
-                android:background="@drawable/ic_question"/>
+                <TextView  
+				android:textAppearance="@style/TextAppearance.AppCompat.Headline"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"  
+				android:text="@string/spicial_card" />
+
+
+                <ImageView  
+				android:layout_gravity="center"  
+				android:id="@+id/img_specialIllustrat"  
+				android:background="@drawable/ic_question"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"  
+				android:layout_marginLeft="@dimen/paddingSmall" />
+
+
+            </LinearLayout>
+
+            <LinearLayout  
+				android:orientation="horizontal"  
+				android:id="@+id/offer_spliter"  
+				android:padding="@dimen/paddingMedium"  
+				android:visibility="gone"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content">
+
+                <View  
+				android:layout_gravity="center"  
+				android:background="@color/colorPrimary"  
+				android:layout_width="120dp"  
+				android:layout_height="2dp" />
+
+
+                <TextView  
+				android:textAppearance="@style/TextAppearance.AppCompat.Headline"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"  
+				android:text="@string/or" />
+
+
+                <View  
+				android:layout_gravity="center"  
+				android:background="@color/colorPrimary"  
+				android:layout_width="120dp"  
+				android:layout_height="2dp" />
+
+
+            </LinearLayout>
+
+            <ImageView  
+				android:layout_gravity="center"  
+				android:id="@+id/img_offer"  
+				android:background="@drawable/offer"  
+				android:visibility="gone"  
+				android:layout_width="250dp"  
+				android:layout_height="200dp" />
+
+
+            <TextView  
+				android:textAppearance="@style/TextAppearance.AppCompat.Headline"  
+				android:layout_gravity="center"  
+				android:id="@+id/tv_offer"  
+				android:visibility="gone"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"  
+				android:text="@string/add_offer" />
+
+
+            <LinearLayout  
+				android:orientation="horizontal"  
+				android:padding="@dimen/paddingMedium"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content">
+
+                <View  
+				android:layout_gravity="center"  
+				android:background="@color/colorPrimary"  
+				android:layout_width="120dp"  
+				android:layout_height="2dp" />
+
+
+                <TextView  
+				android:textAppearance="@style/TextAppearance.AppCompat.Headline"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"  
+				android:text="@string/or" />
+
+
+                <View  
+				android:layout_gravity="center"  
+				android:background="@color/colorPrimary"  
+				android:layout_width="120dp"  
+				android:layout_height="2dp" />
+
+
+            </LinearLayout>
+
+            <ImageView  
+				android:layout_gravity="center"  
+				android:id="@+id/img_normalCard"  
+				android:background="@drawable/ic_normalcard"  
+				android:layout_width="250dp"  
+				android:layout_height="200dp" />
+
+
+            <TextView  
+				android:textAppearance="@style/TextAppearance.AppCompat.Headline"  
+				android:layout_gravity="center"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"  
+				android:text="@string/normal_card" />
+
 
         </LinearLayout>
 
+    </ScrollView>
 
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/paddingMedium"
-            android:orientation="horizontal">
-
-            <View
-                android:background="@color/colorPrimary"
-                android:layout_width="120dp"
-                android:layout_gravity="center"
-                android:layout_height="2dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/or"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
-            <View
-                android:background="@color/colorPrimary"
-                android:layout_width="120dp"
-                android:layout_gravity="center"
-                android:layout_height="2dp"/>
-
-        </LinearLayout>
-
-
-        <ImageView
-            android:id="@+id/img_normalCard"
-            android:background="@drawable/ic_normalcard"
-            android:layout_width="300dp"
-            android:layout_height="200dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:text="@string/normal_card"/>
-
-
-    </LinearLayout>
-</ScrollView>
 </android.support.v4.widget.NestedScrollView>
+

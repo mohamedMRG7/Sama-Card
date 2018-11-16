@@ -1,38 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/paddingSmall">
+<android.support.constraint.ConstraintLayout android:padding="@dimen/paddingSmall"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.mikhaellopez.circularimageview.CircularImageView
-        android:id="@+id/img_logo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+    <com.mikhaellopez.circularimageview.CircularImageView  
+				android:id="@+id/img_logo"  
+				android:layout_width="120dp"  
+				android:layout_height="120dp"  
+				android:src="@drawable/bsetlogo"  
+				app:civ_border_color="@color/colorPrimary"  
+				app:civ_border_width="4dp"  
+				app:civ_shadow="true"  
+				app:civ_shadow_color="#ff8bc34a"  
+				app:civ_shadow_radius="10.0"  
+				app:layout_constraintEnd_toEndOf="parent"  
+				app:layout_constraintStart_toStartOf="parent"  
+				app:layout_constraintTop_toTopOf="parent"   />
 
-        android:src="@drawable/apple"
-        app:civ_border_color="@color/colorPrimary"
-        app:civ_border_width="4dp"
-        app:civ_shadow="true"
-        app:civ_shadow_color="#8BC34A"
-        app:civ_shadow_radius="10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_userName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/paddingSmall"
-        tools:text="Mohamed Ragab"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-        app:layout_constraintTop_toBottomOf="@+id/img_logo"
-        app:layout_constraintLeft_toLeftOf="@+id/img_logo"
-        app:layout_constraintRight_toRightOf="@+id/img_logo"/>
+    <ImageView  
+				android:id="@+id/img_banner"  
+				android:background="@drawable/ic_black_gallon"  
+				android:visibility="gone"  
+				android:layout_width="30dp"  
+				android:layout_height="50dp"  
+				app:layout_constraintLeft_toLeftOf="@id/img_logo"  
+				app:layout_constraintTop_toTopOf="@id/img_logo"   />
+
+
+    <TextView  
+				android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"  
+				android:gravity="center"  
+				android:id="@+id/tv_userName"  
+				android:padding="@dimen/paddingSmall"  
+				android:layout_width="120dp"  
+				android:layout_height="wrap_content"  
+				app:layout_constraintLeft_toLeftOf="@id/img_logo"  
+				app:layout_constraintRight_toRightOf="@id/img_logo"  
+				app:layout_constraintTop_toBottomOf="@id/img_logo"   />
 
 
 </android.support.constraint.ConstraintLayout>
+

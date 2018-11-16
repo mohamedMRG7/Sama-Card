@@ -26,18 +26,20 @@
             android:value="@string/facebook_application_id" />
 
         <activity
-            android:name=".card.CardActivity"
-            android:theme="@style/CardThem" />
-        <activity
             android:name=".addCard.AddCardActivity"
-
-            android:theme="@style/NoTitleDialog"/>
-
+            android:theme="@style/NoTitleDialog" />
 
         <provider
-            android:authorities="com.dev.mohamed.samacard"
             android:name=".contentProvider.CardsContentProvider"
-            android:exported="false"/>
+            android:authorities="com.dev.mohamed.samacard"
+            android:exported="false" />
+
+        <activity android:name=".SplachScreenActivity" />
+        <activity android:name=".search.SpiceficUsersActivity" />
+        <activity android:name=".user.MyCardAndOffersActivity" />
+        <activity android:name=".card.CardActivity" />
+        <activity android:name=".card.NormalCardActivity" />
+        <activity android:name=".card.SpecialCardActivity"></activity>
     </application>
 
 </manifest>

@@ -1,30 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-
-    <array name="countrys">
-
-
-        <item >Choose your Country</item>
-        <item >Cairo</item>
-        <item >Alex</item>
-        <item >Bany sweef</item>
-    </array>
-
-    <array name="governorates">
-
-        <item>Choose your governorate</item>
-        <item>Shobra el khema</item>
-        <item>Ay 7aga</item>
-    </array>
-
     <array name="activities">
-
-        <item>Choose Activiy</item>
-        <item>@string/commercial</item>
-        <item>@string/industry</item>
-        <item>@string/farming</item>
-        <item>@string/services</item>
+        <item>@string/choose_activity</item>
+        <item>تجارى</item>
+        <item>صناعى</item>
+        <item>زراعى</item>
+        <item>خدمات</item>
+        <item>هوايه</item>
+        <item>خدمات عامه</item>
     </array>
-
+    <array name="alex">
+        <item>@string/choose_area</item>
+        <item>كل المحافظه</item>
+        <item>الابراهيميه</item>
+        <item>الخضره</item>
+        <item>الازاريطه</item>
+        <item>السيوف</item>
+        <item>الشاطئ</item>
+        <item>الصالحيه</item>
+        <item>الظاهريه</item>
+        <item>العصافره</item>
+        <item>العطارين</item>
+        <item>العوايد</item>
+        <item>القبارى</item>
+        <item>المكى</item>
+        <item>المندره</item>
+        <item>المنشيه البحريه</item>
+        <item>الورديان</item>
+        <item>اخرى</item>
+    </array>
+    <array name="cairo">
+        <item>@string/choose_area</item>
+        <item>كل المحافظه</item>
+        <item>مصر الجديده</item>
+        <item>التجمع</item>
+        <item>مدينه نصر</item>
+        <item>المرج</item>
+        <item>عين شمس</item>
+        <item>المطريه</item>
+        <item>الزيتون</item>
+        <item>العباسيه</item>
+        <item>حدائق القبه</item>
+        <item>رمسيس</item>
+        <item>شبرا مصر</item>
+        <item>عابدين</item>
+        <item>العتبه</item>
+        <item>السيده زينب</item>
+        <item>مصر القديمه</item>
+        <item>المقطم</item>
+        <item>دار السلام</item>
+        <item>المعادى</item>
+        <item>حلوان</item>
+        <item>مدينه السلام</item>
+        <item>مدينه العبور</item>
+        <item>مدينه بدر</item>
+        <item>النزهه</item>
+        <item>جسر السويس</item>
+        <item>الزمالك</item>
+        <item>وسط البلد</item>
+        <item>الوايلى</item>
+        <item>اخرى</item>
+    </array>
+    <array name="giza">
+        <item>@string/choose_area</item>
+        <item>كل المحافظه</item>
+        <item>6 اكتوبر</item>
+        <item>الشيخ زايد</item>
+        <item>الهرم</item>
+        <item>فيصل</item>
+        <item>دقى</item>
+        <item>العجوزه</item>
+        <item>امبابه</item>
+        <item>بولاق الدكرور</item>
+        <item>المنيب</item>
+        <item>العمرانيه</item>
+        <item>اخرى</item>
+    </array>
+    <array name="governorates">
+        <item>@string/choose_governorat</item>
+        <item>القاهره</item>
+        <item>الجيزه</item>
+        <item>القليوبيه</item>
+        <item>المنوفيه</item>
+        <item>الغربيه</item>
+        <item>كفر الشيخ</item>
+        <item>الاسكندريه</item>
+        <item>البحيره</item>
+        <item>محافظات اخرى</item>
+        <item>خارج مصر</item>
+    </array>
+    <array name="other">
+        <item>@string/choose_area</item>
+        <item>كل المحافظه</item>
+        <item>كل المحافظه</item>
+    </array>
+    <array name="qaliobya">
+        <item>@string/choose_area</item>
+        <item>كل المحافظه</item>
+        <item>بنها</item>
+        <item>قليوب</item>
+        <item>القناطر</item>
+        <item>الخانكه</item>
+        <item>كفر شكر</item>
+        <item>طوخ</item>
+        <item>شبرا الخيمه</item>
+        <item>اخرى</item>
+    </array>
 </resources>

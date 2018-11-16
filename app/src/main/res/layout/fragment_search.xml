@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout
+	android:tag="layout/fragment_search"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <View  
+				android:background="@color/colorPrimary"  
+				android:focusable="true"  
+				android:clickable="true"  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content"  
+				android:alpha="0.1"  
+				app:layout_constraintBottom_toTopOf="@id/linear"  
+				app:layout_constraintEnd_toEndOf="parent"  
+				app:layout_constraintStart_toStartOf="parent"  
+				app:layout_constraintTop_toTopOf="parent"   />
+
+
+    <LinearLayout  
+				android:orientation="vertical"  
+				android:id="@+id/linear"  
+				android:background="@drawable/textbackground"  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content"  
+				app:layout_constraintBottom_toBottomOf="parent"  >
+
+        <ImageView  
+				android:layout_gravity="center"  
+				android:background="@drawable/ic_worker"  
+				android:layout_width="80dp"  
+				android:layout_height="80dp"  
+				android:layout_margin="@dimen/paddingSmall" />
+
+
+        <Spinner  
+				android:entries="@array/governorates"  
+				android:id="@+id/sp_governorate"  
+				android:padding="@dimen/paddingMedium"  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content" />
+
+
+        <Spinner  
+				android:id="@+id/sp_area"  
+				android:padding="@dimen/paddingMedium"  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content" />
+
+
+        <Spinner  
+				android:entries="@array/activities"  
+				android:id="@+id/sp_activity"  
+				android:padding="@dimen/paddingMedium"  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content" />
+
+
+        <LinearLayout  
+				android:layout_gravity="center"  
+				android:orientation="horizontal"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content">
+
+            <at.markushi.ui.CircleButton  
+				android:id="@+id/bt_search"  
+				android:layout_width="64dp"  
+				android:layout_height="64dp"  
+				android:layout_margin="@dimen/paddingSmall"  
+				android:src="@drawable/ic_tick"  
+				app:cb_color="#ff99cc00"  
+				app:cb_pressedRingWidth="8dp" />
+
+
+            <at.markushi.ui.CircleButton  
+				android:id="@+id/bt_out"  
+				android:layout_width="64dp"  
+				android:layout_height="64dp"  
+				android:layout_margin="@dimen/paddingSmall"  
+				android:src="@drawable/ic_unchecked"  
+				app:cb_color="#fff44336"  
+				app:cb_pressedRingWidth="8dp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
+

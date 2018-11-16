@@ -1,6 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="editTextAddCard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/paddingSmall</item>
+    </style>
+    <style name="textShowAll">
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Medium</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@null</item>
+    </style>
+    <style name="textViewCardStyle">
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Headline</item>
+        <item name="android:padding">@dimen/paddingSmall</item>
+        <item name="android:paddingTop">@dimen/paddingSmall</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="textViewDataCardStyle" parent="textViewCardStyle">
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Medium</item>
+    </style>
+    <style name="textviewStyle">
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Headline</item>
+        <item name="android:background">@drawable/textbackground</item>
+        <item name="android:padding">@dimen/paddingSmall</item>
+        <item name="android:paddingTop">@dimen/paddingSmall</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -8,57 +38,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="textviewStyle">
-
-        <item name="android:padding">@dimen/paddingSmall</item>
-        <item name="android:background">@drawable/textbackground</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">@dimen/paddingSmall</item>
-        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Headline</item>
-    </style>
-
-    <style name="textShowAll">
-
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/blue</item>
-        <item name="android:text">Show all</item>
-        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Medium</item>
-
-
-    </style>
-
-
     <style name="CardThem" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
-
-    <style name="textViewCardStyle">
-
-        <item name="android:padding">@dimen/paddingSmall</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">@dimen/paddingSmall</item>
-        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Headline</item>
-    </style>
-
-    <style name="textViewDataCardStyle" parent="textViewCardStyle">
-
-        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Medium</item>
-
-    </style>
-
-    <style name="editTextAddCard" >
-        <item name="android:layout_margin">@dimen/paddingSmall</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">300dp</item>
-    </style>
-
 
     <style name="NoTitleDialog" parent="@style/Theme.AppCompat.Light.Dialog">
         <item name="windowNoTitle">true</item>

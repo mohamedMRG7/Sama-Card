@@ -2,12 +2,10 @@ package com.dev.mohamed.samacard;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,13 +14,12 @@ import com.dev.mohamed.samacard.addCard.AddCardActivity;
 import com.dev.mohamed.samacard.auth.AuthinticationActivity;
 import com.dev.mohamed.samacard.contentProvider.CardsContentProvider;
 import com.dev.mohamed.samacard.fireBase.DataBaseUtilies;
-import com.dev.mohamed.samacard.sqliteDb.DbContract;
 import com.dev.mohamed.samacard.user.UserCardData;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements DataBaseUtilies.onresiveData{
+public class MainActivity extends AppCompatActivity implements DataBaseUtilies.onResiveData {
 
 
     @BindView(R.id.rv_services) RecyclerView rvServices;

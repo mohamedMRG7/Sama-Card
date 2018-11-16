@@ -56,7 +56,7 @@
     <Spinner
         android:id="@+id/sp_country"
         style="@style/editTextAddCard"
-        android:entries="@array/countrys"/>
+        />
 
     <Spinner
         android:id="@+id/sp_governorate"

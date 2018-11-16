@@ -1,96 +1,82 @@
 package com.dev.mohamed.samacard.fireBase;
 
-import android.accounts.NetworkErrorException;
 import android.app.Activity;
-import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.util.Log;
-import android.widget.ImageView;
+import android.support.v4.app.FragmentManager;
 import android.widget.Toast;
 
+import com.dev.mohamed.samacard.C0629R;
+import com.dev.mohamed.samacard.CommonStaticKeys;
 import com.dev.mohamed.samacard.R;
+import com.dev.mohamed.samacard.addCard.FragmentPlaceholder;
+import com.dev.mohamed.samacard.auth.AuthinticationActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.analytics.FirebaseAnalytics.Param;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
-
-import java.io.File;
-
-import timber.log.Timber;
-
-import static com.facebook.FacebookSdk.getApplicationContext;
-
-/**
- * Created by mohamed on 3/17/18.
- */
+import com.google.firebase.storage.UploadTask.TaskSnapshot;
 
 public class StorageUtilies {
 
+    public interface OnImageUploaded {
+        void loaded(String str, String str2);
 
-    public static void getImageDonloadUrl(final Activity context, Uri file, final OnImageUploaded uploadedLisner) {
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-         StorageReference reference = storage.getReference();
-
-        if (file != null) {
-
-            if (file.getScheme().equals("content")) {
-                StorageReference photoref = reference.child("logos").child(file.getLastPathSegment());
-
-                UploadTask uploadTask = photoref.putFile(file);
-                uploadTask.addOnSuccessListener(context, new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        uploadedLisner.loaded(taskSnapshot.getDownloadUrl().toString());
-
-
-                    }
-                });
-                uploadTask.addOnFailureListener(context, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e("failluer", e.getMessage());
-                        Toast.makeText(context.getApplicationContext(), R.string.add_card_error,Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-
-
-            }else  if (file.getScheme().equals("https")) uploadedLisner.loaded(file.toString());
-
-
-        }else  uploadedLisner.loaded("Sama app logo");
-
+        void offerLoaded(String str);
     }
 
 
-
-
-    public static void deleteImage(final String mImageUrl)
-    {
-        if (mImageUrl!=null) {
-            FirebaseStorage storage = FirebaseStorage.getInstance();
-
-            StorageReference photoRef = storage.getReferenceFromUrl(mImageUrl);
-
-            photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    // File deleted successfully
+    //UPLOAD THE IMAGE TO FIREBASE STORAGE AND RETURN THE IMAGE LINK TO ADD IT TO DB
+    public static void getImageDonloadUrl(final String cardType, final Activity context, Uri file, final OnImageUploaded uploadedLisner, FragmentManager manager) {
+        StorageReference reference = FirebaseStorage.getInstance().getReference();
+        //CHECK IF THE USER ADDED AN AVATAR OR NOT , IF NOT WILL USE THE APP LOGO AS AVATAR
+        if (file == null) {
+            uploadedLisner.loaded(CommonStaticKeys.APP_LOGO, cardType);
+        } else if (file.getScheme().equals(Param.CONTENT)) {
+            manager.beginTransaction().replace(R.id.addCard_container, new FragmentPlaceholder()).commit();
+            UploadTask uploadTask = reference.child("logos").child(file.getLastPathSegment()).putFile(file);
+            uploadTask.addOnSuccessListener(context, new OnSuccessListener<TaskSnapshot>() {
+                public void onSuccess(TaskSnapshot taskSnapshot) {
+                    uploadedLisner.loaded(taskSnapshot.getDownloadUrl().toString(), cardType);
                 }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Uh-oh, an error occurred!
+            });
+            uploadTask.addOnFailureListener(context, new OnFailureListener() {
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(context.getApplicationContext(), R.string.add_card_error, Toast.LENGTH_SHORT).show();
+                    context.finish();
+                }
+            });
+        } else if (file.getScheme().equals("https")) {
+            uploadedLisner.loaded(file.toString(), cardType);
+        }
+    }
+
+    //UPLOAD THE OFFER AND RETURN ITS URL TO ADD IT TO DB
+    public static void getOfferImageUrl(final Activity context, Uri file, final OnImageUploaded uploadedLisner, FragmentManager manager) {
+        StorageReference reference = FirebaseStorage.getInstance().getReference();
+        if (file != null && file.getScheme().equals(Param.CONTENT)) {
+            manager.beginTransaction().replace(R.id.addCard_container, new FragmentPlaceholder()).commit();
+            UploadTask uploadTask = reference.child("offers").child(file.getLastPathSegment()).putFile(file);
+            uploadTask.addOnSuccessListener(context, new OnSuccessListener<TaskSnapshot>() {
+                public void onSuccess(TaskSnapshot taskSnapshot) {
+                    uploadedLisner.offerLoaded(taskSnapshot.getDownloadUrl().toString());
+                }
+            });
+            uploadTask.addOnFailureListener(context, new OnFailureListener() {
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(context.getApplicationContext(), R.string.add_card_error, Toast.LENGTH_SHORT).show();
+                    context.finish();
                 }
             });
         }
     }
 
-    public interface OnImageUploaded
-    {
-        void loaded(String url);
+    //USE WHEN DELETING CARD OR OFFER
+    public static void deleteImage(String mImageUrl) {
+        if (mImageUrl != null) {
+            FirebaseStorage.getInstance().getReferenceFromUrl(mImageUrl).delete();
+        }
     }
 }

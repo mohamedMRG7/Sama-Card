@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   
+    <string name="about_activity">نبذه عن النشاط</string>
+    <string name="about_activiy">نبذه عن النشاط</string>
+    <string name="about_us">عن البرنامج</string>
+    <string name="accepted">تم القبول</string>
+    <string name="add_card_error">يوجد مشكله فى اضافه البطاقه من فضلك تاكد من اتصالك بالانترنت</string>
+    <string name="add_offer">اضافه عرض</string>
+    <string name="add_your_card">اضف البطاقه الخاصه بك</string>
+    <string name="add_your_offer">اضف العرض الخاص بك</string>
+    <string name="adress">العنوان</string>
+    <string name="aleardy_have_card_message">انت بالفعل اضفت بطاقه من قبل اذا قمت باضافه بطاقه اخرى سيتم حذف بطاقتك الحاليه</string>
+    <string name="app_name">SamaCard</string>
+    <string name="choose_activity">اختر النشاط</string>
+    <string name="choose_area">اختار المنطقه</string>
+    <string name="choose_governorat">اختار المحافظه</string>
+    <string name="choose_your_picture_or_company_logo">اختار صوره او اللوجو الخاص بك</string>
+    <string name="close">اغلاق</string>
+   
+    <string name="commercial">تجارى</string>
+    <string name="commercial_name">الاسم التجارى</string>
+    
+    <string name="company_adress">عنوان الشركه</string>
+    <string name="company_name">اسم الشركه</string>
+    <string name="copy_message">تم النسخ الى الحافظه</string>
+    <string name="direct_number">رقم تليفون اضافى</string>
+    <string name="dissconnection_message">تم فقد الاتصال بالانترنت</string>
+    <string name="email">البريد الالكترونى</string>
+    <string name="facebook_page">صفحه الفيس بوك</string>
+    <string name="faied_card_addition">يوجد مشكله فى اضافه البطاقه من فضلك تاكد من اتصالك بالانترنت</string>
+    <string name="failed_removing_card">مشكله فى ازاله البطاقه من فضلك تاكد من اتصالك بالانترنت</string>
+    <string name="farming">زراعى</string>
+    <string name="filter_message">من فضلك اختر اولا</string>
+   
+    <string name="general">خدمات عامه</string>
+    <string name="hobby">هوايه</string>
+    <string name="industry">صناعى</string>
+    <string name="my_card">الكارت الخاص بى</string>
+    <string name="name">الاسم</string>
+    <string name="no_connection_trying_to_reconnect">لا يوجد اتصال بالانترنت , نحاول الاتصال الان</string>
+    <string name="nocards">لا يوجد بطاقات هنا حتى الان</string>
+    <string name="normal_card">بطاقه عاديه</string>
+    <string name="not_available">Not Available</string>
+    <string name="null_recommended_message">من فضلك ادخل كل البيانات اللازمه</string>
+    <string name="offer_nullwarning_message">من فضلك اختار صوره الاعلان الخاص بك</string>
+    <string name="offer_remove_message">تم ازاله العرض بنجاح</string>
+    <string name="offer_succesadded_message">تم اضافه اعلانك بنجاح</string>
+    <string name="office_number">رقم التليفون المحمول</string>
+    <string name="official_number">رقم التليفون المحمول</string>
+    <string name="ok">موافق</string>
+    <string name="open_card">افتح البطاقه</string>
+    <string name="or">أو</string>
+    <string name="pending">فى انتظار القبول</string>
+    <string name="pennding_message">سيتم مراجعه البطاقه الخاصه بك وسيتم قبولها اذا اوفت كل المتطلبات وهذا يتم فى خلال يومان</string>
+    <string name="please_add_your_offer_image_and_be_sure_to_be_have_all_the_offer_data_and_logo">من فضلك اضف صوره للعرض الخاص بك مع التاكد من توفر جميع بيانات العرض فى هذه الصوره</string>
+    <string name="position">الوظيفه</string>
+    <string name="position_in_company">منصبك فى الشركه</string>
+    <string name="search_for_a_card">ابحث عن بطاقه</string>
+    <string name="search_menu_title">البحث</string>
+    <string name="services">خدمات</string>
+    <string name="sign_out">تسجيل الخروج</string>
+    <string name="special_card_illustration">تمكنك البطاقه المميزه من اضافه كافه البيانات الخاصه بك وبالنشاط مثل الفيس بوك و الواتساب والموقع الالكترونى و المزيد مقابل تكلفه 150 جنيه سنويا فقط , ولفتره محدوده يمكنك اضافه الاعلان الخاص بك مجانا</string>
+    <string name="spicial_card">بطاقه مميزه</string>
+    <string name="status_bar_notification_info_overflow">+999</string>
+    <string name="succes_card_addition">تم اضافه البطاقه بنجاح</string>
+    <string name="succes_removing_card">تم ازاله البطاقه بنجاح</string>
+    <string name="thanks_for_using_samacard">شكرا لاستخدامك سما كارد</string>
+    <string name="userName">الاسم</string>
+    <string name="website">الموقع الالكترونى</string>
+    <string name="whatsapp">Whatsapp</string>
+    <string name="you_dont_have_card_yet">لا يوجد لديك بطاقه حتى الان</string>
+    <string name="you_dont_have_offer_yet">انت لا تملك عروض حتى الان</string>
+    <string name="you_dont_have_specialcard">يجب ان تملك كارت مميز لتستطيع اضافع عروض خاصه بك</string>
+    <string name="your_card">الكارت الخاص بك</string>
+    <string name="your_offer">العروض الخاصه بك</string>
+</resources>

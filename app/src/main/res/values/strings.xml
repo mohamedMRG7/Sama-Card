@@ -1,38 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SamaCard</string>
-    <string name="facebook_application_id" translatable="false">987731024723448</string>
-    <string name="services">Services</string>
-    <string name="commercial">commercial</string>
-    <string name="industry">Industry</string>
-    <string name="farming">Farming</string>
-    <string name="add_your_card">Add Your Card</string>
-    <string name="search_for_a_card">Search for a card</string>
-    <string name="name">Name</string>
-    <string name="choose_your_picture_or_company_logo">Choose your picture or company logo</string>
-    <string name="userName">Name</string>
-    <string name="company_name">Company Name</string>
-    <string name="company_adress">Company Address</string>
-    <string name="position_in_company">Position in Company</string>
-    <string name="company_activiy">Company Activiy</string>
+
+    <string name="about_activity">About Activity</string>
     <string name="about_activiy">About Activiy</string>
-    <string name="official_number">Official Number</string>
+    <string name="about_us">About Us</string>
+    <string name="accepted">Accepted</string>
+    <string name="add_card_error">There are proplem while adding card , Please Check connection and try again</string>
+    <string name="add_offer">Add Offer</string>
+    <string name="add_your_card">Add Your Card</string>
+    <string name="add_your_offer">Add Your Offer</string>
+    <string name="adress">Address</string>
+    <string name="aleardy_have_card_message">You already added card when you add a new card the other card will remove</string>
+    <string name="app_name">SamaCard</string>
+
+    <string name="choose_activity">Choose activity</string>
+    <string name="choose_area">Choose Area</string>
+    <string name="choose_governorat">Choose Governorate</string>
+    <string name="choose_your_picture_or_company_logo">Choose your picture or company logo</string>
+    <string name="close">Close</string>
+
+    <string name="commercial">commercial</string>
+    <string name="commercial_name">Commercial Name</string>
+
+    <string name="company_adress">Company Address</string>
+    <string name="company_name">Company Name</string>
+    <string name="copy_message">Copied To Clipboard</string>
+    <string name="direct_number">Direct Number</string>
+    <string name="dissconnection_message">You are disconnected from internet</string>
+    <string name="dp_notavailble">Not Available</string>
     <string name="email">Email</string>
+    <string name="facebook_application_id">987731024723448</string>
+    <string name="facebook_login_protocol_scheme">fbYOUR_APP_ID</string>
     <string name="facebook_page">FaceBook Page</string>
+    <string name="faied_card_addition">Failed to add card ,please check connection and try again</string>
+    <string name="failed_removing_card">Error whil removing card,please check connecton and try again</string>
+    <string name="farming">Farming</string>
+
+    <string name="filter_message">Please Choose First</string>
+
+
+    <string name="hobby">Hobby</string>
+    <string name="industry">Industry</string>
+    <string name="my_card">My Card</string>
+    <string name="name">Name</string>
+    <string name="no_connection_trying_to_reconnect">No connection ,Trying to reconnect</string>
+    <string name="nocards">No Cards Her yet</string>
+    <string name="normal_card">Normal Card</string>
+    <string name="not_available">Not Available</string>
+    <string name="null_recommended_message">Please Enter All Recommended Fields</string>
+    <string name="offer_nullwarning_message">Please choose the offer image first</string>
+    <string name="offer_remove_message">Your offer have bees removed succefully</string>
+    <string name="offer_succesadded_message">Your offer has been successfully added</string>
+    <string name="office_number">Office Number</string>
+    <string name="official_number">Official Number</string>
+    <string name="ok">OK</string>
+    <string name="open_card">Open Card</string>
+    <string name="or">OR</string>
+
+    <string name="pending">Pending..</string>
+    <string name="pennding_message">Your Card will be reviewed and will be added after meet the requirement, it may take two days</string>
+    <string name="please_add_your_offer_image_and_be_sure_to_be_have_all_the_offer_data_and_logo">Please add your offer image and be sure to be have all the offer data and logo</string>
+    <string name="position">Position</string>
+    <string name="position_in_company">Position in Company</string>
+    <string name="search_for_a_card">Search for a card</string>
+    <string name="search_menu_title">Search</string>
+    <string name="services">Services</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="special_card_illustration">Special card allow you to provide your card with all data abotut you and your activity like facebook page and whatsapp and website and more for just 150 LE annually</string>
+    <string name="spicial_card">Special Card</string>
+    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="succes_card_addition">Card Added Succefally</string>
+    <string name="succes_removing_card">Card removed successfully</string>
+    <string name="thanks_for_using_samacard">Thanks for using SamaCard</string>
+
+    <string name="userName">Name</string>
     <string name="website">WebSite</string>
     <string name="whatsapp">Whatsapp</string>
-    <string name="country">Country</string>
-    <string name="governorate">Governorate</string>
-    <string name="or">OR</string>
-    <string name="normal_card">Normal Card</string>
-    <string name="spicial_card">Special Card</string>
-    <string name="commercial_name">Commercial Name</string>
-    <string name="position">Position</string>
-    <string name="adress">Address</string>
-    <string name="office_number">Office Number</string>
-    <string name="about_activity">About Activity</string>
-    <string name="direct_number">Direct Number</string>
-    <string name="not_available">Not Available</string>
-    <string name="special_type">special</string>
-    <string name="add_card_error">There are proplem while adding card , Please Check connection and try again</string>
-    <string name="add_card_succes">Your Card successfully added</string>
+    <string name="you_dont_have_card_yet">You Dont Have Card Yet</string>
+    <string name="you_dont_have_offer_yet">You Dont Have Offer Yet</string>
+    <string name="you_dont_have_specialcard">You must have special card to can create your own offer</string>
+    <string name="your_card">Your Card</string>
+    <string name="your_offer">Your Offer</string>
 </resources>

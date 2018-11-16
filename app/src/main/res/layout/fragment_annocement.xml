@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+<android.support.constraint.ConstraintLayout
+	android:tag="layout/fragment_annocement"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	>
+
+    <View  
+				android:background="@color/wihte"  
+				android:focusable="true"  
+				android:clickable="true"  
+				android:layout_width="match_parent"  
+				android:layout_height="match_parent"  
+				android:alpha="0.3" />
+
+
+    <LinearLayout  
+				android:orientation="vertical"  
+				android:id="@+id/linear"  
+				android:background="@drawable/boarder"  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content"  
+				android:layout_margin="@dimen/paddingMedium"  
+				app:layout_constraintBottom_toBottomOf="parent"  
+				app:layout_constraintEnd_toEndOf="parent"  
+				app:layout_constraintStart_toStartOf="parent"  
+				app:layout_constraintTop_toTopOf="parent"  >
+
+        <com.mikhaellopez.circularimageview.CircularImageView  
+				android:layout_gravity="center"  
+				android:id="@+id/img_photo"  
+				android:layout_width="120dp"  
+				android:layout_height="120dp"  
+				android:src="@drawable/bsetlogo"  
+				app:civ_border_color="@color/colorPrimary"  
+				app:civ_border_width="4dp"  
+				app:civ_shadow="true"  
+				app:civ_shadow_color="#ff8bc34a"  
+				app:civ_shadow_radius="10.0" />
+
+
+        <TextView  
+				android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"  
+				android:layout_gravity="center"  
+				android:id="@+id/tv_userName"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content" />
+
+
+        <TextView  
+				android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"  
+				android:textColor="@color/colorPrimary"  
+				android:layout_gravity="center"  
+				android:id="@+id/tv_activity"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content" />
+
+
+        <TextView  
+				android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"  
+				android:layout_gravity="center"  
+				android:id="@+id/tv_aboutactivity"  
+				android:layout_width="wrap_content"  
+				android:layout_height="50dp"  
+				android:layout_margin="@dimen/paddingLarge" />
+
+
+    </LinearLayout>
+
+    <Button  
+				android:textColor="@color/wihte"  
+				android:id="@+id/bt_open"  
+				android:background="@drawable/buttonstyle"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"  
+				android:layout_marginTop="@dimen/paddingMedium"  
+				android:text="@string/open_card"  
+				app:layout_constraintLeft_toLeftOf="parent"  
+				app:layout_constraintRight_toLeftOf="@id/bt_cancel"  
+				app:layout_constraintTop_toBottomOf="@id/linear"   />
+
+
+    <Button  
+				android:textColor="@color/wihte"  
+				android:id="@+id/bt_cancel"  
+				android:background="@drawable/closebutton"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"  
+				android:layout_marginTop="@dimen/paddingMedium"  
+				android:text="@string/close"  
+				app:layout_constraintLeft_toRightOf="@id/bt_open"  
+				app:layout_constraintRight_toRightOf="parent"  
+				app:layout_constraintTop_toBottomOf="@id/linear"   />
+
+
+</android.support.constraint.ConstraintLayout>
+
+</layout>

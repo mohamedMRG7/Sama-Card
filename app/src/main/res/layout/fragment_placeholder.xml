@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout  
+				android:orientation="vertical"  
+				android:background="@drawable/textbackground"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"
+  				xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView  
+				android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"  
+				android:layout_gravity="center"  
+				android:padding="@dimen/paddingMedium"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"  
+				android:text="Please Wait ...." />
+
+
+    <ProgressBar  
+				android:layout_gravity="center"  
+				android:padding="@dimen/paddingLarge"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content" />
+
+
+</LinearLayout>
+
