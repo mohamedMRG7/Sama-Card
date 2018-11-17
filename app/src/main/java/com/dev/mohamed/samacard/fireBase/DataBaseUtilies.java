@@ -12,6 +12,7 @@ import com.dev.mohamed.samacard.CommonStaticKeys;
 import com.dev.mohamed.samacard.R;
 import com.dev.mohamed.samacard.addCard.AddCardActivity;
 
+import com.dev.mohamed.samacard.addCard.FragmentAddedMessage;
 import com.dev.mohamed.samacard.auth.AuthinticationActivity;
 import com.dev.mohamed.samacard.contentProvider.CardsContentProvider;
 import com.dev.mohamed.samacard.sqliteDb.DbContract.CardDataEntry;

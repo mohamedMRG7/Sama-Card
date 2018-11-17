@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v4.widget.NestedScrollView  
+				android:id="@+id/scroll"  
+				android:background="@color/wihte"  
+				android:layout_width="match_parent"  
+				android:layout_height="match_parent">
+
+        <LinearLayout  
+				android:orientation="vertical"  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content">
+
+            <android.support.constraint.ConstraintLayout  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content">
+
+                <TextView  
+				android:text="@string/general"  
+				app:layout_constraintBottom_toBottomOf="parent"  
+				app:layout_constraintStart_toStartOf="parent"  
+				app:layout_constraintTop_toTopOf="parent" 
+				style="@style/textviewStyle"   />
+
+
+                <TextView  
+				android:layout_marginRight="8dp"  
+				android:layout_marginBottom="8dp"  
+				app:layout_constraintBottom_toBottomOf="parent"  
+				app:layout_constraintEnd_toEndOf="parent" 
+				style="@style/textShowAll"   />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.v7.widget.RecyclerView  
+				android:id="@+id/rv_general"  
+				android:padding="@dimen/paddingSmall"  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content" />
+
+
+            <View  
+				android:background="#ff757575"  
+				android:layout_width="match_parent"  
+				android:layout_height="1dp" />
+
+
+            <android.support.constraint.ConstraintLayout  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content">
+
+                <TextView  
+				android:text="@string/services"  
+				app:layout_constraintBottom_toBottomOf="parent"  
+				app:layout_constraintStart_toStartOf="parent"  
+				app:layout_constraintTop_toTopOf="parent" 
+				style="@style/textviewStyle"   />
+
+
+                <TextView  
+				android:layout_marginRight="8dp"  
+				android:layout_marginBottom="8dp"  
+				app:layout_constraintBottom_toBottomOf="parent"  
+				app:layout_constraintEnd_toEndOf="parent" 
+				style="@style/textShowAll"   />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.v7.widget.RecyclerView  
+				android:id="@+id/rv_services"  
+				android:padding="@dimen/paddingSmall"  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content" />
+
+
+            <View  
+				android:background="#ff757575"  
+				android:layout_width="match_parent"  
+				android:layout_height="1dp" />
+
+
+            <android.support.constraint.ConstraintLayout  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content">
+
+                <TextView  
+				android:text="@string/commercial"  
+				app:layout_constraintBottom_toBottomOf="parent"  
+				app:layout_constraintStart_toStartOf="parent"  
+				app:layout_constraintTop_toTopOf="parent" 
+				style="@style/textviewStyle"   />
+
+
+                <TextView  
+				android:layout_marginRight="8dp"  
+				android:layout_marginBottom="8dp"  
+				app:layout_constraintBottom_toBottomOf="parent"  
+				app:layout_constraintEnd_toEndOf="parent" 
+				style="@style/textShowAll"   />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.v7.widget.RecyclerView  
+				android:id="@+id/rv_commercial"  
+				android:padding="@dimen/paddingSmall"  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content" />
+
+
+            <View  
+				android:background="#ff757575"  
+				android:layout_width="match_parent"  
+				android:layout_height="1dp" />
+
+
+            <android.support.constraint.ConstraintLayout  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content">
+
+                <TextView  
+				android:text="@string/industry"  
+				app:layout_constraintBottom_toBottomOf="parent"  
+				app:layout_constraintStart_toStartOf="parent"  
+				app:layout_constraintTop_toTopOf="parent" 
+				style="@style/textviewStyle"   />
+
+
+                <TextView  
+				android:layout_marginRight="8dp"  
+				android:layout_marginBottom="8dp"  
+				app:layout_constraintBottom_toBottomOf="parent"  
+				app:layout_constraintEnd_toEndOf="parent" 
+				style="@style/textShowAll"   />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.v7.widget.RecyclerView  
+				android:id="@+id/rv_indestry"  
+				android:padding="@dimen/paddingSmall"  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content" />
+
+
+            <View  
+				android:background="#ff757575"  
+				android:layout_width="match_parent"  
+				android:layout_height="1dp" />
+
+
+            <android.support.constraint.ConstraintLayout  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content">
+
+                <TextView  
+				android:text="@string/farming"  
+				app:layout_constraintBottom_toBottomOf="parent"  
+				app:layout_constraintStart_toStartOf="parent"  
+				app:layout_constraintTop_toTopOf="parent" 
+				style="@style/textviewStyle"   />
+
+
+                <TextView  
+				android:layout_marginRight="8dp"  
+				android:layout_marginBottom="8dp"  
+				app:layout_constraintBottom_toBottomOf="parent"  
+				app:layout_constraintEnd_toEndOf="parent" 
+				style="@style/textShowAll"   />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.v7.widget.RecyclerView  
+				android:id="@+id/rv_farming"  
+				android:padding="@dimen/paddingSmall"  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content" />
+
+
+            <View  
+				android:background="#ff757575"  
+				android:layout_width="match_parent"  
+				android:layout_height="1dp" />
+
+
+            <android.support.constraint.ConstraintLayout  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content">
+
+                <TextView  
+				android:text="@string/hobby"  
+				app:layout_constraintBottom_toBottomOf="parent"  
+				app:layout_constraintStart_toStartOf="parent"  
+				app:layout_constraintTop_toTopOf="parent" 
+				style="@style/textviewStyle"   />
+
+
+                <TextView  
+				android:layout_marginRight="8dp"  
+				android:layout_marginBottom="8dp"  
+				app:layout_constraintBottom_toBottomOf="parent"  
+				app:layout_constraintEnd_toEndOf="parent" 
+				style="@style/textShowAll"   />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.v7.widget.RecyclerView  
+				android:id="@+id/rv_hoppy"  
+				android:padding="@dimen/paddingSmall"  
+				android:layout_width="match_parent"  
+				android:layout_height="wrap_content" />
+
+
+            <View  
+				android:background="#ff757575"  
+				android:layout_width="match_parent"  
+				android:layout_height="1dp" />
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <FrameLayout  
+				android:id="@+id/container_search"  
+				android:layout_width="match_parent"  
+				android:layout_height="match_parent"  
+				app:layout_constraintBottom_toBottomOf="parent"  
+				app:layout_constraintLeft_toLeftOf="parent"  
+				app:layout_constraintRight_toRightOf="parent"   />
+
+
+</android.support.constraint.ConstraintLayout>
+

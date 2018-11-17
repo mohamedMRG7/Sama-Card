@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<android.support.v4.widget.NestedScrollView android:id="@+id/scroll"
+    android:tag="layout/activity_specialcard"
+    android:background="@drawable/textbackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/frame"
+            android:background="@drawable/textbackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/img_logo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/bsetlogo"
+            app:civ_border_color="@color/colorPrimary"
+            app:civ_border_width="4dp"
+            app:civ_shadow="true"
+            app:civ_shadow_color="#ff8bc34a"
+            app:civ_shadow_radius="10.0"
+            app:layout_constraintEnd_toEndOf="@id/frame"
+            app:layout_constraintStart_toStartOf="@id/frame"
+            app:layout_constraintTop_toTopOf="@id/frame"   />
+
+
+        <at.markushi.ui.CircleButton
+            android:id="@+id/bt_accept"
+            android:visibility="gone"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="@dimen/paddingSmall"
+            android:src="@drawable/ic_tick"
+            app:cb_color="#ff99cc00"
+            app:cb_pressedRingWidth="8dp"
+            app:layout_constraintLeft_toRightOf="@id/img_logo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"   />
+
+
+        <at.markushi.ui.CircleButton
+            android:id="@+id/bt_deny"
+            android:visibility="gone"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="@dimen/paddingSmall"
+            android:src="@drawable/ic_unchecked"
+            app:cb_color="#fff44336"
+            app:cb_pressedRingWidth="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/img_logo"
+            app:layout_constraintTop_toTopOf="parent"   />
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/img_logo"  >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/name"
+                    style="@style/textViewCardStyle" />
+
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_name"
+                    style="@style/textViewDataCardStyle" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/commercial_name"
+                    style="@style/textViewCardStyle" />
+
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_commercialName"
+                    style="@style/textViewDataCardStyle" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/position"
+                    style="@style/textViewCardStyle" />
+
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_position"
+                    style="@style/textViewDataCardStyle" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/adress"
+                    style="@style/textViewCardStyle" />
+
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_adress"
+                    style="@style/textViewDataCardStyle" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/office_number"
+                    style="@style/textViewCardStyle" />
+
+
+                <TextView
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_telephon"
+                    android:drawableLeft="@drawable/ic_telephone"
+                    android:drawablePadding="@dimen/paddingSmall"
+                    android:onClick="officialCall"
+                    android:drawableStart="@drawable/ic_telephone"
+                    style="@style/textViewDataCardStyle" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/direct_number"
+                    style="@style/textViewCardStyle" />
+
+
+                <TextView
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_directtelephon"
+                    android:drawableLeft="@drawable/ic_telephone"
+                    android:drawablePadding="@dimen/paddingSmall"
+                    android:onClick="directCall"
+                    android:drawableStart="@drawable/ic_telephone"
+                    style="@style/textViewDataCardStyle" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/about_activity"
+                    style="@style/textViewCardStyle" />
+
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/tv_aboutactivity"
+                    style="@style/textViewDataCardStyle" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_facebook"
+                    android:background="@drawable/ic_facebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/paddingSmall"
+                    android:onClick="openFaceBook" />
+
+
+                <ImageView
+                    android:id="@+id/img_email"
+                    android:background="@drawable/ic_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/paddingSmall"
+                    android:onClick="email" />
+
+
+                <ImageView
+                    android:id="@+id/img_website"
+                    android:background="@drawable/ic_internet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/paddingSmall"
+                    android:onClick="openSite" />
+
+
+                <ImageView
+                    android:id="@+id/img_whatsapp"
+                    android:background="@drawable/ic_whatsapp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/paddingSmall"
+                    android:onClick="whatsapp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v4.widget.NestedScrollView>
+
+</layout>

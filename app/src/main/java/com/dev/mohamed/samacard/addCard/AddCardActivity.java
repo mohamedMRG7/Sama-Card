@@ -60,7 +60,7 @@ public class AddCardActivity extends AppCompatActivity implements Choosecard, Ad
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcard);
         setFinishOnTouchOutside(false);
-        userData = getIntent().getParcelableExtra(AuthinticationActivity.USER_DATA_KEY);
+        userData = getIntent().getParcelableExtra(CommonStaticKeys.USER_DATA_KEY);
 
         //Check if the user picked an avatar or not ,case PICKED uplaoad it and get link ,CASE NOT PICKED user app logo as avatar
         if (userData.getPhotoLink() != null) {
@@ -98,10 +98,10 @@ public class AddCardActivity extends AppCompatActivity implements Choosecard, Ad
     public void normalCard(FragmentAddNormalcardBinding binding) {
         normalcardBinding = binding;
         binding.btCancel.setOnClickListener(this);
-        binding.btNormalDone.setOnClickListener(this);
-        binding.imgNromalLogo.setOnClickListener(this);
+        binding.btNormaDone.setOnClickListener(this);
+        binding.imgNormaLogo.setOnClickListener(this);
         binding.edUserName.setText(userData.getUserName());
-        Glide.with(this).load(imageLocalUrl).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(binding.imgNromalLogo);
+        Glide.with(this).load(imageLocalUrl).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(binding.imgNormaLogo);
     }
 
     //HANDLE LISNERS AT SPECIAL CARD ADD
@@ -154,7 +154,7 @@ public class AddCardActivity extends AppCompatActivity implements Choosecard, Ad
                 } else {
                     return;
                 }
-            case R.id.bt_normalDone:
+            case R.id.bt_normaDone:
                 if (!CheckConnection.isOnline(this)) {
                     Toast.makeText(this, R.string.dissconnection_message, Toast.LENGTH_SHORT).show();
                     return;
@@ -170,7 +170,7 @@ public class AddCardActivity extends AppCompatActivity implements Choosecard, Ad
                 intent.putExtra("android.intent.extra.LOCAL_ONLY", true);
                 startActivityForResult(Intent.createChooser(intent, "Choose Image Using"), 2);
                 return;
-            case R.id.img_nromalLogo:
+            case R.id.img_normaLogo:
                 Intent intentnormal = new Intent("android.intent.action.GET_CONTENT");
                 intentnormal.setType("image/*");
                 intentnormal.putExtra("android.intent.extra.LOCAL_ONLY", true);
@@ -203,7 +203,7 @@ public class AddCardActivity extends AppCompatActivity implements Choosecard, Ad
         }
         if (requestCode == RC_NORMALLOGOPICK && resultCode == RESULT_OK) {
             imageLocalUrl = data.getData();
-            Glide.with(this).load(imageLocalUrl).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(normalcardBinding.imgNromalLogo);
+            Glide.with(this).load(imageLocalUrl).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(normalcardBinding.imgNormaLogo);
         }
         //OFFER IMAGE PICK
         if (requestCode == RC_OFFERPICK && resultCode == RESULT_OK) {

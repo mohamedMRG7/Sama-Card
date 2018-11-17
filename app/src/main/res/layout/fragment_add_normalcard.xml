@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+<ScrollView android:excludeFromRecents="true"
+	android:tag="layout/fragment_add_normalcard"
+	android:background="@drawable/textbackground"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	>
+
+    <LinearLayout  
+				android:orientation="vertical"  
+				android:padding="@dimen/paddingMedium"  
+				android:layout_width="300dp"  
+				android:layout_height="wrap_content">
+
+        <com.mikhaellopez.circularimageview.CircularImageView  
+				android:layout_gravity="center"  
+				android:id="@+id/img_normaLogo"  
+				android:layout_width="120dp"  
+				android:layout_height="120dp"  
+				android:src="@drawable/bsetlogo"  
+				app:civ_border_color="@color/colorPrimary"  
+				app:civ_border_width="4dp"  
+				app:civ_shadow="true"  
+				app:civ_shadow_color="#ff8bc34a"  
+				app:civ_shadow_radius="10.0"   />
+
+
+        <TextView  
+				android:layout_gravity="center"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content"  
+				android:text="@string/choose_your_picture_or_company_logo" />
+
+
+        <EditText  
+				android:id="@+id/ed_userName"  
+				android:hint="@string/userName"  
+				android:drawableRight="@drawable/ic_recommended"  
+				android:drawableEnd="@drawable/ic_recommended" 
+				style="@style/editTextAddCard" />
+
+
+        <Spinner  
+				android:entries="@array/governorates"  
+				android:id="@+id/sp_country" 
+				style="@style/editTextAddCard" />
+
+
+        <Spinner  
+				android:id="@+id/sp_governorate" 
+				style="@style/editTextAddCard" />
+
+
+        <EditText  
+				android:id="@+id/ed_companyName"  
+				android:hint="@string/company_name" 
+				style="@style/editTextAddCard" />
+
+
+        <EditText  
+				android:id="@+id/ed_adress"  
+				android:hint="@string/company_adress"  
+				android:drawableRight="@drawable/ic_recommended"  
+				android:drawableEnd="@drawable/ic_recommended" 
+				style="@style/editTextAddCard" />
+
+
+        <Spinner  
+				android:entries="@array/activities"  
+				android:id="@+id/sp_activity" 
+				style="@style/editTextAddCard" />
+
+
+        <EditText  
+				android:id="@+id/ed_officialNum"  
+				android:hint="@string/official_number"  
+				android:maxLength="11"  
+				android:drawableRight="@drawable/ic_recommended"  
+				android:inputType="phone"  
+				android:drawableEnd="@drawable/ic_recommended" 
+				style="@style/editTextAddCard" />
+
+
+        <LinearLayout  
+				android:layout_gravity="center"  
+				android:orientation="horizontal"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content">
+
+            <at.markushi.ui.CircleButton  
+				android:id="@+id/bt_normaDone"  
+				android:layout_width="64dp"  
+				android:layout_height="64dp"  
+				android:layout_margin="@dimen/paddingSmall"  
+				android:src="@drawable/ic_tick"  
+				app:cb_color="#ff99cc00"  
+				app:cb_pressedRingWidth="8dp"   />
+
+
+            <at.markushi.ui.CircleButton  
+				android:id="@+id/bt_cancel"  
+				android:layout_width="64dp"  
+				android:layout_height="64dp"  
+				android:layout_margin="@dimen/paddingSmall"  
+				android:src="@drawable/ic_unchecked"  
+				app:cb_color="#fff44336"  
+				app:cb_pressedRingWidth="8dp"   />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
+</layout>

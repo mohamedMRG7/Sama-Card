@@ -38,7 +38,7 @@
         <activity android:name=".search.SpiceficUsersActivity" />
         <activity android:name=".user.MyCardAndOffersActivity" />
         <activity android:name=".card.CardActivity" />
-        <activity android:name=".card.NormalCardActivity" />
+        <activity android:name=".card.NormalCardActvitiy" />
         <activity android:name=".card.SpecialCardActivity"></activity>
     </application>
 

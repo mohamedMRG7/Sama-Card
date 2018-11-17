@@ -2,24 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:icon="@drawable/bsetlogo" android:id="@+id/menu_usercard" android:visible="false" android:orderInCategory="0" android:title="@string/my_card" app:showAsAction="always"/>
 
-    <item
-        android:title="@string/search_for_a_card"
-        android:id="@+id/menu_search"
-        android:orderInCategory="0"
-        android:icon="@drawable/ic_worker"
-        app:showAsAction="ifRoom"/>
+    <item android:icon="@drawable/ic_worker" android:id="@+id/menu_search" android:orderInCategory="1" android:title="@string/search_for_a_card" app:showAsAction="always"/>
 
-    <item
-        android:title="@string/add_your_card"
-        android:id="@+id/menu_add"
-        android:orderInCategory="1"
-        android:icon="@drawable/ic_add_circular_outlined_button"
-        app:showAsAction="ifRoom"/>
+    <item android:icon="@drawable/ic_add_circular_outlined_button" android:id="@+id/menu_add" android:orderInCategory="2" android:title="@string/add_your_card" app:showAsAction="ifRoom"/>
 
-    <item
-        android:title="About Us"
-        android:id="@+id/menu_aboutus"
-        android:orderInCategory="2"
-        app:showAsAction="never"/>
+    <item android:id="@+id/menu_aboutus" android:orderInCategory="3" android:title="@string/about_us" app:showAsAction="never"/>
+
+    <item android:id="@+id/menu_signout" android:orderInCategory="4" android:title="@string/sign_out" app:showAsAction="never"/>
 </menu>

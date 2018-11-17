@@ -18,7 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.dev.mohamed.samacard.CommonStaticKeys;
 import com.dev.mohamed.samacard.R;
-import com.dev.mohamed.samacard.card.NormalCardActivity;
+import com.dev.mohamed.samacard.card.NormalCardActvitiy;
 import com.dev.mohamed.samacard.card.SpecialCardActivity;
 import com.dev.mohamed.samacard.sqliteDb.DbContract.CardDataEntry;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -62,7 +62,7 @@ public class MainRecyclerAdapter extends Adapter<MainRecyclerAdapter.MainRecycel
                 context.startActivity(intent);
             }
             if (cardType.equals(CommonStaticKeys.NORMAL_CARD)) {
-                intent = new Intent(context, NormalCardActivity.class);
+                intent = new Intent(context, NormalCardActvitiy.class);
                 intent.putExtra(CommonStaticKeys.NORMAL_CARD, positionUserId);
                 intent.putExtra(CommonStaticKeys.EMAIL_KEY, email);
                context.startActivity(intent);
