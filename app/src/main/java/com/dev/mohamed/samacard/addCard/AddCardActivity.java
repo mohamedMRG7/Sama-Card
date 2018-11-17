@@ -15,8 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+
 import com.dev.mohamed.samacard.CommonStaticKeys;
 import com.dev.mohamed.samacard.R;
 import com.dev.mohamed.samacard.addCard.AddNormalCardFragment.AddNormalCard;
@@ -32,6 +31,8 @@ import com.dev.mohamed.samacard.fireBase.DataBaseUtilies;
 import com.dev.mohamed.samacard.fireBase.StorageUtilies;
 import com.dev.mohamed.samacard.fireBase.StorageUtilies.OnImageUploaded;
 import com.dev.mohamed.samacard.user.UserCardData;
+import com.squareup.picasso.Picasso;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -101,7 +102,9 @@ public class AddCardActivity extends AppCompatActivity implements Choosecard, Ad
         binding.btNormaDone.setOnClickListener(this);
         binding.imgNormaLogo.setOnClickListener(this);
         binding.edUserName.setText(userData.getUserName());
-        Glide.with(this).load(imageLocalUrl).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(binding.imgNormaLogo);
+       // Glide.with(this).load(imageLocalUrl).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(binding.imgNormaLogo);
+        Picasso.with(this).load(imageLocalUrl).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(binding.imgNormaLogo);
+
     }
 
     //HANDLE LISNERS AT SPECIAL CARD ADD
@@ -112,7 +115,8 @@ public class AddCardActivity extends AppCompatActivity implements Choosecard, Ad
         binding.imgLogo.setOnClickListener(this);
         binding.edUserName.setText(userData.getUserName());
         binding.edEmail.setText(userData.getEmail());
-        Glide.with(this).load(imageLocalUrl).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(specialCardBinding.imgLogo);
+      //  Glide.with(this).load(imageLocalUrl).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(specialCardBinding.imgLogo);
+        Picasso.with(this).load(imageLocalUrl).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(specialCardBinding.imgLogo);
     }
 
     //HANDLE LISNERS AT OFFER  ADD
@@ -199,18 +203,23 @@ public class AddCardActivity extends AppCompatActivity implements Choosecard, Ad
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_LOGOPICK && resultCode == RESULT_OK) {
             imageLocalUrl = data.getData();
-            Glide.with(this).load(imageLocalUrl).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(specialCardBinding.imgLogo);
+        //    Glide.with(this).load(imageLocalUrl).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(specialCardBinding.imgLogo);
+            Picasso.with(this).load(imageLocalUrl).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(specialCardBinding.imgLogo);
+
         }
         if (requestCode == RC_NORMALLOGOPICK && resultCode == RESULT_OK) {
             imageLocalUrl = data.getData();
-            Glide.with(this).load(imageLocalUrl).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(normalcardBinding.imgNormaLogo);
+         //   Glide.with(this).load(imageLocalUrl).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(normalcardBinding.imgNormaLogo);
+            Picasso.with(this).load(imageLocalUrl).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(normalcardBinding.imgNormaLogo);
+
         }
         //OFFER IMAGE PICK
         if (requestCode == RC_OFFERPICK && resultCode == RESULT_OK) {
             offerImageUrl = data.getData();
             mOfferBinding.imgOffer.setVisibility(View.VISIBLE);
             mOfferBinding.btAddOffer.setVisibility(View.GONE);
-            Glide.with(this).load(offerImageUrl).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(mOfferBinding.imgOffer);
+           // Glide.with(this).load(offerImageUrl).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(mOfferBinding.imgOffer);
+            Picasso.with(this).load(imageLocalUrl).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(mOfferBinding.imgOffer);
         }
     }
 
@@ -307,7 +316,7 @@ public class AddCardActivity extends AppCompatActivity implements Choosecard, Ad
 
     //CHECK IF THE USER LET A FIELD NULL AND WORN HIM
     private boolean isRecommendedFiledsNull(String cardType) {
-        if (cardType.equals(CommonStaticKeys.NORMAL_CARD)) {
+        if (cardType.equals(CommonStaticKeys.SPECIAL_CARD)) {
             String name = getEditeTextData(specialCardBinding.edUserName);
             String adress = getEditeTextData(specialCardBinding.edAdress);
             String officialNum = getEditeTextData(specialCardBinding.edOfficialNum);

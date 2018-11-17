@@ -12,13 +12,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+
 import com.dev.mohamed.samacard.CommonStaticKeys;
 import com.dev.mohamed.samacard.R;
 import com.dev.mohamed.samacard.contentProvider.CardsContentProvider;
 import com.dev.mohamed.samacard.databinding.FragmentAnnocementBinding;
 import com.dev.mohamed.samacard.sqliteDb.DbContract.CardDataEntry;
+import com.squareup.picasso.Picasso;
 
 import java.util.Random;
 
@@ -57,7 +57,9 @@ public class FragmentAnnoncement extends Fragment implements OnClickListener {
         uId = mCursor.getString(mCursor.getColumnIndex(CardDataEntry.USER_ID));
         annocementBinding.tvActivity.setText(activity);
         annocementBinding.tvUserName.setText(name);
-        Glide.with(this).load(photo).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(annocementBinding.imgPhoto);
+//        Glide.with(this).load(photo).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(annocementBinding.imgPhoto);
+        Picasso.with(context).load(photo).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(annocementBinding.imgPhoto);
+
         if (aboutActiviy.equals(context.getResources().getString(R.string.not_available))) {
             annocementBinding.tvAboutactivity.setText(governorate + " , " + adress);
         } else {

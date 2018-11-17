@@ -8,7 +8,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import com.bumptech.glide.Glide;
+
+
 import com.dev.mohamed.samacard.CommonStaticKeys;
 import com.dev.mohamed.samacard.R;
 import com.dev.mohamed.samacard.MainActivity;
@@ -21,6 +22,7 @@ import com.dev.mohamed.samacard.databinding.ActivityMyCardAndOffersBinding;
 import com.dev.mohamed.samacard.fireBase.DataBaseUtilies;
 import com.dev.mohamed.samacard.sqliteDb.DbContract.CardDataEntry;
 import com.onurkaganaldemir.ktoastlib.KToast;
+import com.squareup.picasso.Picasso;
 
 import static com.dev.mohamed.samacard.CommonStaticKeys.NORMAL_CARD;
 import static com.dev.mohamed.samacard.CommonStaticKeys.SPECIAL_CARD;
@@ -56,9 +58,12 @@ public class MyCardAndOffersActivity extends AppCompatActivity implements OnClic
                 mBinding.tvIsaccepted.setText(R.string.pending);
                 mBinding.tvIsaccepted.setTextColor(getResources().getColor(R.color.red));
             }
-            Glide.with((FragmentActivity) this).load(photoLink).into(mBinding.imgPhoto);
+           // Glide.with((FragmentActivity) this).load(photoLink).into(mBinding.imgPhoto);
+            Picasso.with(this).load(photoLink).into(mBinding.imgPhoto);
+
             if (!offerImage.equals(getString(R.string.dp_notavailble))) {
-                Glide.with((FragmentActivity) this).load(offerImage).into(mBinding.imgOfferImage);
+               // Glide.with((FragmentActivity) this).load(offerImage).into(mBinding.imgOfferImage);
+                Picasso.with(this).load(offerImage).into(mBinding.imgOfferImage);
             } else if (offerImage.equals(getString(R.string.dp_notavailble)) && cardType.equals(SPECIAL_CARD)) {
                 mBinding.tvNoOffer.setVisibility(View.VISIBLE);
                 mBinding.tvNoOffer.setText(getString(R.string.you_dont_have_offer_yet));

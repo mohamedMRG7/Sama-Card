@@ -14,14 +14,14 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+
 import com.dev.mohamed.samacard.CommonStaticKeys;
 import com.dev.mohamed.samacard.R;
 import com.dev.mohamed.samacard.card.NormalCardActvitiy;
 import com.dev.mohamed.samacard.card.SpecialCardActivity;
 import com.dev.mohamed.samacard.sqliteDb.DbContract.CardDataEntry;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 
 //Main adapter displaying cards in the main screen
@@ -95,7 +95,8 @@ public class MainRecyclerAdapter extends Adapter<MainRecyclerAdapter.MainRecycel
         if (this.cursor.getString(this.cursor.getColumnIndex(CardDataEntry.CARDTYPE)).equals(CommonStaticKeys.SPECIAL_CARD)) {
             holder.banner.setVisibility(View.VISIBLE);
         }
-        Glide.with(this.context).load(logo).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(holder.logo);
+       // Glide.with(this.context).load(logo).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(holder.logo);
+        Picasso.with(context).load(logo).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(holder.logo);
         holder.userName.setText(userName);
     }
 

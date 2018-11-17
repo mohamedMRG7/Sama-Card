@@ -13,13 +13,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
 import com.dev.mohamed.samacard.CommonStaticKeys;
 import com.dev.mohamed.samacard.R;
 import com.dev.mohamed.samacard.ads.FragmentAnnoncement.AnnoncementAction;
 import com.dev.mohamed.samacard.contentProvider.CardsContentProvider;
 import com.dev.mohamed.samacard.databinding.FragmentOfferAnnocementBinding;
 import com.dev.mohamed.samacard.sqliteDb.DbContract.CardDataEntry;
+import com.squareup.picasso.Picasso;
 
 import java.util.Random;
 
@@ -49,7 +49,9 @@ public class FragmentOfferAnoncement extends Fragment implements OnClickListener
         String offerLink = cursor.getString(cursor.getColumnIndex(CardDataEntry.OFFER_IMAGE));
         Log.e(CardDataEntry.OFFER_IMAGE, offerLink + "");
         uId = cursor.getString(cursor.getColumnIndex(CardDataEntry.USER_ID));
-        Glide.with(this).load(offerLink).into(binding.imgOffer);
+     //   Glide.with(this).load(offerLink).into(binding.imgOffer);
+        Picasso.with(context).load(offerLink).into(binding.imgOffer);
+
         binding.btOpen.setOnClickListener(this);
         binding.btCancel.setOnClickListener(this);
         return view;

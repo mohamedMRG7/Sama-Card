@@ -72,7 +72,7 @@
     <string name="succes_card_addition">Card Added Succefally</string>
     <string name="succes_removing_card">Card removed successfully</string>
     <string name="thanks_for_using_samacard">Thanks for using SamaCard</string>
-
+    <string name="general">General</string>
     <string name="userName">Name</string>
     <string name="website">WebSite</string>
     <string name="whatsapp">Whatsapp</string>

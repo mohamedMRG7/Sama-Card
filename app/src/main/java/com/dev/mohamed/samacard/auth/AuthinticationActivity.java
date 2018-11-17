@@ -33,7 +33,7 @@ import java.util.Arrays;
 import static com.dev.mohamed.samacard.CommonStaticKeys.APP_LOGO;
 import static com.dev.mohamed.samacard.CommonStaticKeys.USER_DATA_KEY;
 
-public class AuthinticationActivity extends AppCompatActivity implements Serializable, ConnectivityChangeListener {
+public class AuthinticationActivity extends AppCompatActivity implements Serializable, ConnectivityChangeListener ,AuthStateListener{
     private static final int RC_SIGN_IN = 1;
     private AuthStateListener authStateListener;
     ActivityAuthBinding binding;
@@ -54,7 +54,7 @@ public class AuthinticationActivity extends AppCompatActivity implements Seriali
                 startActivity(intent);
                 finish();
                 return;
-            }
+            }else
            startActivityForResult(((SignInIntentBuilder) ((SignInIntentBuilder) AuthUI.getInstance().createSignInIntentBuilder().setIsSmartLockEnabled(false)).setTheme(R.style.CardThem)).setLogo(R.drawable.logo)
                    .setAvailableProviders(Arrays.asList(new Builder(EmailAuthProvider.PROVIDER_ID).build(), new Builder(AuthUI.GOOGLE_PROVIDER).build(), new Builder(AuthUI.FACEBOOK_PROVIDER).build())).build(), 1);
         }
@@ -64,6 +64,7 @@ public class AuthinticationActivity extends AppCompatActivity implements Seriali
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
         firebaseAuth = FirebaseAuth.getInstance();
+        authStateListener=this;
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth);
         sign_In();
         ConnectionBuddy.getInstance().init(new ConnectionBuddyConfiguration.Builder(this).build());

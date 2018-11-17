@@ -55,6 +55,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import static com.dev.mohamed.samacard.CommonStaticKeys.ADMIN_EMAIL;
 import static com.dev.mohamed.samacard.CommonStaticKeys.KEY_ACTIVITY;
 import static com.dev.mohamed.samacard.CommonStaticKeys.KEY_AREA;
 import static com.dev.mohamed.samacard.CommonStaticKeys.KEY_GOVERNORATE;
@@ -287,7 +288,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
     public void resiveData(UserCardData data) {
         CardsContentProvider.insertCardToDb(data, this);
         loadedUsersList.add(data.getUserId());
-        if (isCardExpierd(data.getDate()) && data.getEmail().equals("samacard2018@gmail.com")) {
+        if (isCardExpierd(data.getDate()) && data.getEmail().equals(ADMIN_EMAIL)) {
             DataBaseUtilies.deleteCard(data.getUserId(), this, data.getPhotoLink(), data.getOfferImg());
         }
     }

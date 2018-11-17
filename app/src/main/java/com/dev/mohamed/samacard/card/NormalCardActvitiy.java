@@ -13,8 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+
 import com.dev.mohamed.samacard.CommonStaticKeys;
 import com.dev.mohamed.samacard.R;
 import com.dev.mohamed.samacard.addCard.AddCardActivity;
@@ -22,6 +21,7 @@ import com.dev.mohamed.samacard.contentProvider.CardsContentProvider;
 import com.dev.mohamed.samacard.databinding.ActivityNormalcardBinding;
 import com.dev.mohamed.samacard.fireBase.DataBaseUtilies;
 import com.dev.mohamed.samacard.sqliteDb.DbContract.CardDataEntry;
+import com.squareup.picasso.Picasso;
 
 public class NormalCardActvitiy extends AppCompatActivity implements OnClickListener {
     private static final int REQUEST_CALL_PERMISSION = 1;
@@ -55,7 +55,9 @@ public class NormalCardActvitiy extends AppCompatActivity implements OnClickList
             normalcardBinding.btDeny.setVisibility(View.VISIBLE);
             normalcardBinding.btDeny.setOnClickListener(this);
         }
-        Glide.with((FragmentActivity) this).load(photoLink).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(normalcardBinding.imgLogo);
+       // Glide.with((FragmentActivity) this).load(photoLink).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(normalcardBinding.imgLogo);
+        Picasso.with(this).load(photoLink).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(normalcardBinding.imgLogo);
+
     }
 
     public void call(View view) {

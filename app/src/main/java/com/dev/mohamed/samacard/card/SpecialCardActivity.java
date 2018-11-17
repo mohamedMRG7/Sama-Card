@@ -17,8 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+
 import com.dev.mohamed.samacard.CommonStaticKeys;
 import com.dev.mohamed.samacard.R;
 import com.dev.mohamed.samacard.addCard.AddCardActivity;
@@ -27,6 +26,7 @@ import com.dev.mohamed.samacard.databinding.ActivitySpecialcardBinding;
 import com.dev.mohamed.samacard.fireBase.DataBaseUtilies;
 import com.dev.mohamed.samacard.sqliteDb.DbContract.CardDataEntry;
 import com.facebook.share.internal.ShareConstants;
+import com.squareup.picasso.Picasso;
 
 public class SpecialCardActivity extends AppCompatActivity implements OnClickListener {
     private static final int REQUEST_CALL_PERMISSION = 1;
@@ -80,7 +80,9 @@ public class SpecialCardActivity extends AppCompatActivity implements OnClickLis
             specialcardBinding.btDeny.setVisibility(View.VISIBLE);
             specialcardBinding.btDeny.setOnClickListener(this);
         }
-        Glide.with((FragmentActivity) this).load(photoLink).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(specialcardBinding.imgLogo);
+   //     Glide.with((FragmentActivity) this).load(photoLink).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(specialcardBinding.imgLogo);
+        Picasso.with(this).load(photoLink).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(specialcardBinding.imgLogo);
+
     }
 
     private static void isNotAvailable(String value, ImageView view) {

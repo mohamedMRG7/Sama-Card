@@ -17,14 +17,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import butterknife.internal.Utils;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
+
 import com.dev.mohamed.samacard.R;
 import com.dev.mohamed.samacard.addCard.AddCardActivity;
 import com.dev.mohamed.samacard.card.NormalCardActvitiy;
 import com.dev.mohamed.samacard.card.SpecialCardActivity;
 import com.dev.mohamed.samacard.sqliteDb.DbContract.CardDataEntry;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 import static com.dev.mohamed.samacard.CommonStaticKeys.NORMAL_CARD;
 import static com.dev.mohamed.samacard.CommonStaticKeys.SPECIAL_CARD;
@@ -90,7 +90,9 @@ public class SpiceficUsersAdapter extends Adapter<SpiceficUsersAdapter.SpicifcAd
         }
         spicifcAdapterViewHolder.userName.setText(name);
         spicifcAdapterViewHolder.adress.setText(address);
-        Glide.with(context).load(photo).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(spicifcAdapterViewHolder.logo);
+     //   Glide.with(context).load(photo).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(spicifcAdapterViewHolder.logo);
+        Picasso.with(context).load(photo).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(spicifcAdapterViewHolder.logo);
+
     }
 
     public int getItemCount() {
