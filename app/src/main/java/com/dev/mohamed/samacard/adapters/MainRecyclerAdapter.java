@@ -35,7 +35,7 @@ public class MainRecyclerAdapter extends Adapter<MainRecyclerAdapter.MainRecycel
         @BindView(R.id.img_banner)
         ImageView banner;
         @BindView(R.id.img_logo)
-        CircularImageView logo;
+        ImageView logo;
         @BindView(R.id.tv_userName)
         TextView userName;
 
@@ -83,7 +83,7 @@ public class MainRecyclerAdapter extends Adapter<MainRecyclerAdapter.MainRecycel
 
     public MainRecycelerAdapterViewholder onCreateViewHolder(ViewGroup parent, int viewType) {
         this.context = parent.getContext();
-        return new MainRecycelerAdapterViewholder(LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item, parent, false));
+        return new MainRecycelerAdapterViewholder(LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item_modifyed, parent, false));
     }
 
     public void onBindViewHolder(MainRecycelerAdapterViewholder holder, int position) {

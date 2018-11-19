@@ -20,7 +20,8 @@
 				android:layout_width="match_parent"  
 				android:layout_height="wrap_content">
 
-                <TextView  
+                <TextView
+					android:id="@+id/tv_general"
 				android:text="@string/general"  
 				app:layout_constraintBottom_toBottomOf="parent"  
 				app:layout_constraintStart_toStartOf="parent"  
@@ -28,9 +29,9 @@
 				style="@style/textviewStyle"   />
 
 
-                <TextView  
+                <TextView
 				android:layout_marginRight="8dp"  
-				android:layout_marginBottom="8dp"  
+				android:layout_marginBottom="8dp"
 				app:layout_constraintBottom_toBottomOf="parent"  
 				app:layout_constraintEnd_toEndOf="parent" 
 				style="@style/textShowAll"   />

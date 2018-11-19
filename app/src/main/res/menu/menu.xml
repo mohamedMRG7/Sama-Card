@@ -4,7 +4,7 @@
 
     <item android:icon="@drawable/bsetlogo" android:id="@+id/menu_usercard" android:visible="false" android:orderInCategory="0" android:title="@string/my_card" app:showAsAction="always"/>
 
-    <item android:icon="@drawable/ic_worker" android:id="@+id/menu_search" android:orderInCategory="1" android:title="@string/search_for_a_card" app:showAsAction="always"/>
+    <item android:icon="@drawable/ic_search" android:id="@+id/menu_search" android:orderInCategory="1" android:title="@string/search_for_a_card" app:showAsAction="always"/>
 
     <item android:icon="@drawable/ic_add_circular_outlined_button" android:id="@+id/menu_add" android:orderInCategory="2" android:title="@string/add_your_card" app:showAsAction="ifRoom"/>
 

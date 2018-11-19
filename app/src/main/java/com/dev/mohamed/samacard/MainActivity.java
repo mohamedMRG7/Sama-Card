@@ -6,9 +6,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -17,10 +21,16 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.dev.mohamed.samacard.adapters.MainRecyclerAdapter;
@@ -89,14 +99,55 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
     RecyclerView rvIndustry;
     @BindView(R.id.rv_services)
     RecyclerView rvServices;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolBar;
+    @BindView(R.id.tv_general)
+    TextView tvGeneral;
+    @BindView(R.id.vw_genralLine)
+    View vwGeneralLine;
     private FragmentSearch search;
     private MainRecyclerAdapter servicisAdapter;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.acivity_main_modyfied);
+
         ButterKnife.bind( this);
+       setSupportActionBar(toolBar);
+        final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collasping);
+
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = true;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                    Log.e("Scroll Range",scrollRange+"");
+                    Log.e("verticalOffset",verticalOffset+"");
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbarLayout.setTitle("Sama Card");
+                    isShow = true;
+                    tvGeneral.setTextColor(Color.BLACK);
+                    vwGeneralLine.setBackgroundColor(Color.BLACK);
+                } else if(isShow) {
+                    collapsingToolbarLayout.setTitle(" ");
+                    tvGeneral.setTextColor(Color.WHITE);
+                    vwGeneralLine.setBackgroundColor(Color.WHITE);
+                    isShow = false;
+                }
+                Log.e("verticalOffset",verticalOffset+"");
+                Log.e("Scroll Range",scrollRange+"");
+
+            }
+
+        });
+
         data = (UserCardData) getIntent().getParcelableExtra(USER_DATA_KEY);
         loadedUsersList = new ArrayList();
         setupCommercialrv();
@@ -105,10 +156,10 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
         setupHoppyyrv();
         setupIndustryrv();
         setupServicesrv();
-        if (data.getEmail().equals("samacard2018@gmail.com")) {
+        if (data.getEmail().equals(ADMIN_EMAIL)) {
             Toast.makeText(this, "Welcom Mr Rabiee", Toast.LENGTH_SHORT).show();
         }
-        if (!(isFirst() || data.getEmail().equals("samacard2018@gmail.com"))) {
+        if (!(isFirst() || data.getEmail().equals(ADMIN_EMAIL))) {
             showOffer();
         }
         isFragmentOpen = false;
@@ -168,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
     }
 
     private static String checkAdmin(String email) {
-        if (email.equals("samacard2018@gmail.com")) {
+        if (email.equals(ADMIN_EMAIL)) {
             return NOT_ACCEPTED;
         }
         return CommonStaticKeys.ACCEPTED;
