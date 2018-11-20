@@ -271,13 +271,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
                 startActivity(intent2);
                 break;
             case R.id.menu_add:
-                Intent intent = new Intent(this, AddCardActivity.class);
-                intent.putExtra(USER_DATA_KEY, data);
-                startActivity(intent);
-                if (isConteinthisId(this, data.getUserId())) {
-                    KToast.normalToast(this, getString(R.string.aleardy_have_card_message), 80, KToast.LENGTH_LONG, R.drawable.ic_warning);
-                    break;
-                }
+
                 break;
             case R.id.menu_search:
                 addFragment(search);
@@ -495,5 +489,17 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
     }
 
     public void onLoaderReset(Loader<Cursor> loader) {
+    }
+
+    public void addCard(View view) {
+
+
+        Intent intent = new Intent(this, AddCardActivity.class);
+        intent.putExtra(USER_DATA_KEY, data);
+        startActivity(intent);
+        if (isConteinthisId(this, data.getUserId())) {
+            KToast.normalToast(this, getString(R.string.aleardy_have_card_message), 80, KToast.LENGTH_LONG, R.drawable.ic_warning);
+
+        }
     }
 }

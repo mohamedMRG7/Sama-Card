@@ -41,7 +41,7 @@ public class FragmentOfferAnoncement extends Fragment implements OnClickListener
         View view = binding.getRoot();
         Cursor cursor = CardsContentProvider.getOffers(context, CommonStaticKeys.ACCEPTED);
         Random rOffer = new Random();
-        Log.e(CardDataEntry.OFFER_IMAGE, cursor.getCount() + "");
+
         if (cursor.getCount() == 0) {
             return null;
         }
@@ -50,7 +50,7 @@ public class FragmentOfferAnoncement extends Fragment implements OnClickListener
         Log.e(CardDataEntry.OFFER_IMAGE, offerLink + "");
         uId = cursor.getString(cursor.getColumnIndex(CardDataEntry.USER_ID));
      //   Glide.with(this).load(offerLink).into(binding.imgOffer);
-        Picasso.with(context).load(offerLink).into(binding.imgOffer);
+        Picasso.with(context).load(offerLink).placeholder(R.drawable.loading).into(binding.imgOffer);
 
         binding.btOpen.setOnClickListener(this);
         binding.btCancel.setOnClickListener(this);

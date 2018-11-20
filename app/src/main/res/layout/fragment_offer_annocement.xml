@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 <android.support.constraint.ConstraintLayout
 	android:tag="layout/fragment_offer_annocement"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+	>
 
     <View  
 				android:background="@color/wihte"  
@@ -15,42 +15,61 @@
 				android:layout_height="match_parent"  
 				android:alpha="0.3" />
 
+	<LinearLayout
+		android:layout_width="300dp"
+		android:layout_height="wrap_content"
 
-    <ImageView  
-				android:id="@+id/img_offer"  
-				android:layout_width="300dp"  
-				android:layout_height="200dp"  
-				app:layout_constraintBottom_toBottomOf="parent"  
-				app:layout_constraintLeft_toLeftOf="parent"  
-				app:layout_constraintRight_toRightOf="parent"  
-				app:layout_constraintTop_toTopOf="parent"  
-				app:layout_constraintVertical_bias="0.3"   />
+		android:layout_marginStart="8dp"
+		android:layout_marginLeft="8dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginEnd="8dp"
+		android:layout_marginRight="8dp"
+		android:layout_marginBottom="8dp"
+		android:orientation="vertical"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<ImageView
+			android:id="@+id/img_offer"
+			android:layout_width="300dp"
+			android:layout_height="200dp"
+			android:scaleType="fitXY"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.3" />
 
 
-    <Button  
-				android:textColor="@color/wihte"  
-				android:id="@+id/bt_open"  
-				android:background="@drawable/buttonstyle"  
-				android:layout_width="wrap_content"  
-				android:layout_height="wrap_content"  
-				android:layout_marginTop="@dimen/paddingMedium"  
-				android:text="@string/open_card"  
-				app:layout_constraintLeft_toLeftOf="parent"  
-				app:layout_constraintRight_toLeftOf="@id/bt_cancel"  
-				app:layout_constraintTop_toBottomOf="@id/img_offer"   />
+
+			<Button
+				android:id="@+id/bt_open"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+
+				android:background="@color/green"
+				android:text="@string/open_card"
+				android:textColor="@color/wihte"
+				 />
 
 
-    <Button  
-				android:textColor="@color/wihte"  
-				android:id="@+id/bt_cancel"  
-				android:background="@drawable/closebutton"  
-				android:layout_width="wrap_content"  
-				android:layout_height="wrap_content"  
-				android:layout_marginTop="@dimen/paddingMedium"  
-				android:text="@string/close"  
-				app:layout_constraintLeft_toRightOf="@id/bt_open"  
-				app:layout_constraintRight_toRightOf="parent"  
-				app:layout_constraintTop_toBottomOf="@id/img_offer"   />
+			<Button
+				android:id="@+id/bt_cancel"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+
+				android:background="@color/bootstrap_gray_light"
+				android:text="@string/close"
+				android:textColor="@color/wihte"
+				 />
+
+
+
+
+
+	</LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>

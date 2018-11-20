@@ -29,7 +29,7 @@ public class NormalCardActvitiy extends AppCompatActivity implements OnClickList
     private String offerLink;
     private String photoLink;
     private String uId;
-
+    private String offcialNumber;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normalcard);
@@ -43,12 +43,12 @@ public class NormalCardActvitiy extends AppCompatActivity implements OnClickList
         offerLink = cursor.getString(cursor.getColumnIndex(CardDataEntry.OFFER_IMAGE));
         String commercialName = cursor.getString(cursor.getColumnIndex(CardDataEntry.COMPANY_NAME));
         String adress = cursor.getString(cursor.getColumnIndex(CardDataEntry.ADDRESS));
-        String offcialNumber = cursor.getString(cursor.getColumnIndex(CardDataEntry.OFFICIAL_NUMBER));
+        offcialNumber = cursor.getString(cursor.getColumnIndex(CardDataEntry.OFFICIAL_NUMBER));
         uId = cursor.getString(cursor.getColumnIndex(CardDataEntry.USER_ID));
         normalcardBinding.tvAdress.setText(adress);
         normalcardBinding.tvCommercialName.setText(commercialName);
         normalcardBinding.tvName.setText(userName);
-        normalcardBinding.tvTelephon.setText(offcialNumber);
+
         if (useremail != null && useremail.equals(CommonStaticKeys.ADMIN_EMAIL)) {
             normalcardBinding.btAccept.setVisibility(View.VISIBLE);
             normalcardBinding.btAccept.setOnClickListener(this);
@@ -57,6 +57,7 @@ public class NormalCardActvitiy extends AppCompatActivity implements OnClickList
         }
        // Glide.with((FragmentActivity) this).load(photoLink).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(normalcardBinding.imgLogo);
         Picasso.with(this).load(photoLink).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(normalcardBinding.imgLogo);
+        Picasso.with(this).load(photoLink).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(normalcardBinding.imgAvatar);
 
     }
 
@@ -69,9 +70,9 @@ public class NormalCardActvitiy extends AppCompatActivity implements OnClickList
     }
 
     private void callNumber() throws SecurityException {
-        String number = normalcardBinding.tvTelephon.getText().toString();
+
         Intent intent = new Intent("android.intent.action.CALL");
-        intent.setData(Uri.parse("tel:" + number));
+        intent.setData(Uri.parse("tel:" + offcialNumber));
         startActivity(intent);
     }
 

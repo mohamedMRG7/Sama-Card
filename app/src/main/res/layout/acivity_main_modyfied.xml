@@ -55,6 +55,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -308,28 +311,23 @@
 
 
         </LinearLayout>
-
+        </FrameLayout>
     </android.support.v4.widget.NestedScrollView>
+
     </android.support.design.widget.CoordinatorLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/bt_add"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="addCard"
+        android:src="@drawable/ic_add_plus_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="vertical">
-
-
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/bt_add"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_add_plus_button"
-            />
-
-
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <FrameLayout
         android:id="@+id/container_search"

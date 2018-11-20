@@ -82,6 +82,7 @@ public class SpecialCardActivity extends AppCompatActivity implements OnClickLis
         }
    //     Glide.with((FragmentActivity) this).load(photoLink).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(specialcardBinding.imgLogo);
         Picasso.with(this).load(photoLink).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(specialcardBinding.imgLogo);
+        Picasso.with(this).load(photoLink).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(specialcardBinding.imgAvatar);
 
     }
 
