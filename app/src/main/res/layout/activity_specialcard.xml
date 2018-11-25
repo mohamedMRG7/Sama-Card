@@ -363,12 +363,13 @@
 
 
         <android.support.design.widget.FloatingActionButton
-            android:onClick="call"
+            android:onClick="chat"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="bottom|end|center"
             android:layout_margin="16dp"
             android:src="@drawable/ic_telephone"
+
             />
 
     </android.support.design.widget.CoordinatorLayout>

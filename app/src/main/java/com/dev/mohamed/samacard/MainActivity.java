@@ -40,6 +40,7 @@ import com.dev.mohamed.samacard.ads.FragmentAnnoncement.AnnoncementAction;
 import com.dev.mohamed.samacard.ads.FragmentOfferAnoncement;
 import com.dev.mohamed.samacard.auth.AuthinticationActivity;
 import com.dev.mohamed.samacard.card.SpecialCardActivity;
+import com.dev.mohamed.samacard.chat.MessagesListActivity;
 import com.dev.mohamed.samacard.contentProvider.CardsContentProvider;
 import com.dev.mohamed.samacard.contentProvider.ContentProviderContract.CardEntry;
 import com.dev.mohamed.samacard.fireBase.DataBaseUtilies;
@@ -77,7 +78,7 @@ import static com.dev.mohamed.samacard.CommonStaticKeys.USER_DATA_KEY;
 public class MainActivity extends AppCompatActivity implements DataBaseUtilies.onResiveData, OnSearch, AnnoncementAction, ConnectivityChangeListener, LoaderCallbacks<Cursor> {
     private static final String KEY_ISFIRST_PREF = "isfirst";
     private MainRecyclerAdapter commercialAdapter;
-    private UserCardData data;
+    private static UserCardData data;
     private MainRecyclerAdapter farmingAdapter;
     private FragmentAnnoncement fragmentAnnoncement;
     private MainRecyclerAdapter generalAdapter;
@@ -272,6 +273,9 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
                 break;
             case R.id.menu_add:
 
+                Intent intent=new Intent(this,MessagesListActivity.class);
+                startActivity(intent);
+
                 break;
             case R.id.menu_search:
                 addFragment(search);
@@ -370,6 +374,11 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
         intent.putExtra(KEY_AREA, area);
         startActivity(intent);
         removeFragment(search);
+    }
+
+    public static String getMyEmail()
+    {
+        return data.getEmail();
     }
 
     public void exit() {

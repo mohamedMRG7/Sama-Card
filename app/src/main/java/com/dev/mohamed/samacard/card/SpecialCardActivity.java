@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.dev.mohamed.samacard.CommonStaticKeys;
 import com.dev.mohamed.samacard.R;
 import com.dev.mohamed.samacard.addCard.AddCardActivity;
+import com.dev.mohamed.samacard.chat.ChatActivity;
 import com.dev.mohamed.samacard.contentProvider.CardsContentProvider;
 import com.dev.mohamed.samacard.databinding.ActivitySpecialcardBinding;
 import com.dev.mohamed.samacard.fireBase.DataBaseUtilies;
@@ -190,5 +191,12 @@ public class SpecialCardActivity extends AppCompatActivity implements OnClickLis
             default:
                 return;
         }
+    }
+
+    public void chat(View view) {
+
+        Intent intent=new Intent(this,ChatActivity.class);
+        intent.putExtra(CommonStaticKeys.EMAIL_KEY,email);
+        startActivity(intent);
     }
 }

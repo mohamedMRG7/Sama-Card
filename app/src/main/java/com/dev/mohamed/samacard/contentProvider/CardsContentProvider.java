@@ -15,6 +15,7 @@ import com.dev.mohamed.samacard.CommonStaticKeys;
 import com.dev.mohamed.samacard.R;
 import com.dev.mohamed.samacard.addCard.AddCardActivity;
 import com.dev.mohamed.samacard.contentProvider.ContentProviderContract.CardEntry;
+import com.dev.mohamed.samacard.sqliteDb.DbContract;
 import com.dev.mohamed.samacard.sqliteDb.DbContract.CardDataEntry;
 import com.dev.mohamed.samacard.sqliteDb.DbHelper;
 import com.dev.mohamed.samacard.user.UserCardData;
@@ -211,6 +212,17 @@ public class CardsContentProvider extends ContentProvider {
 
     public static void deleteUserCard(String id, Context context) {
         context.getContentResolver().delete(CardEntry.CONTENT_URI.buildUpon().appendPath(id).build(), null, null);
+    }
+
+    public static String getUserName(Context context,String email)
+    {
+        SQLiteDatabase database = new DbHelper(context).getReadableDatabase();
+        Cursor cursor=database.query(CardDataEntry.TABLE_NAME,new String[]{CardDataEntry.USER_NAME},CardDataEntry.EMAIL+" =? ",new String[]{email},null,null,null);
+        cursor.moveToFirst();
+        String userName=cursor.getString(0);
+        cursor.close();
+        return userName;
+
     }
 
     public static void clearDatabase(Context context) {
