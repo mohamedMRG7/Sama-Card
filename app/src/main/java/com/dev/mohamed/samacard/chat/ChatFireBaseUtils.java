@@ -44,8 +44,8 @@ public class ChatFireBaseUtils {
 
     public static void ReciveMessages(final OnMessageResive resive)
     {
-
-        FirebaseDatabase.getInstance().getReference().child(MESSAGE_CHILD).child(MainActivity.getMyEmail()).addChildEventListener(new ChildEventListener() {
+        String myEmail=MainActivity.getMyEmail().replace(".","+");
+        FirebaseDatabase.getInstance().getReference().child(MESSAGE_CHILD).child(myEmail).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 resive.message(dataSnapshot.getValue(Chat.class));

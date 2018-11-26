@@ -81,4 +81,8 @@
     <string name="you_dont_have_specialcard">You must have special card to can create your own offer</string>
     <string name="your_card">Your Card</string>
     <string name="your_offer">Your Offer</string>
+    <string name="no_card_warn">Please Creat Card First To Can Chat</string>
+    <string name="no_card">No Card Found</string>
+    <string name="create_card">Create Card</string>
+    <string name="cancel">Cancel</string>
 </resources>

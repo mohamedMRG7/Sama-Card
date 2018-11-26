@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/img_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -93,6 +93,7 @@
             android:id="@+id/unSeenViewContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:constraint_referenced_ids="imageView,tv_unReadedMessages" />
 
 

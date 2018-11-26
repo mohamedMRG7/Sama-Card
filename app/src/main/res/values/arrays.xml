@@ -29,6 +29,8 @@
         <item>الورديان</item>
         <item>اخرى</item>
     </array>
+
+
     <array name="cairo">
         <item>@string/choose_area</item>
         <item>كل المحافظه</item>

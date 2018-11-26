@@ -115,13 +115,13 @@ public class CardsContentProvider extends ContentProvider {
         ContentValues values = new ContentValues();
         values.put(CardDataEntry.USER_ID, cardData.getUserId());
         values.put(CardDataEntry.ABOUT_ACTITIY, cardData.getAboutActivity());
-        values.put("activity", cardData.getActivity());
+        values.put(CardDataEntry.ACTIVITY, cardData.getActivity());
         values.put(CardDataEntry.ADDRESS, cardData.getAddress());
         values.put(CardDataEntry.CARDTYPE, cardData.getCardType());
         values.put(CardDataEntry.COMPANY_NAME, cardData.getCompanyName());
         values.put(CardDataEntry.COUNTRY, cardData.getCountry());
         values.put(CardDataEntry.DIRECT_NUMBER, cardData.getDirectCallNum());
-        values.put("email", cardData.getEmail());
+        values.put(CardDataEntry.EMAIL, cardData.getEmail());
         values.put(CardDataEntry.FACEBOOK_PAGE, cardData.getFacebookAcount());
         values.put(CardDataEntry.GOVERNORATE, cardData.getGovernorate());
         values.put(CardDataEntry.OFFICIAL_NUMBER, cardData.getOfficeNumber());
@@ -164,6 +164,8 @@ public class CardsContentProvider extends ContentProvider {
     public static Cursor getUserWithId(Context context, String id) {
         return context.getContentResolver().query(CardEntry.CONTENT_URI.buildUpon().appendPath(id).build(), null, null, null, null);
     }
+
+
 
     public static boolean isHaveSpecialcard(Context context, String uId) {
         SQLiteDatabase database = new DbHelper(context).getReadableDatabase();
@@ -214,16 +216,19 @@ public class CardsContentProvider extends ContentProvider {
         context.getContentResolver().delete(CardEntry.CONTENT_URI.buildUpon().appendPath(id).build(), null, null);
     }
 
-    public static String getUserName(Context context,String email)
-    {
+    public static String getSpecificData(Context context,String coulmnName,String email)
+    {   String userName="";
         SQLiteDatabase database = new DbHelper(context).getReadableDatabase();
-        Cursor cursor=database.query(CardDataEntry.TABLE_NAME,new String[]{CardDataEntry.USER_NAME},CardDataEntry.EMAIL+" =? ",new String[]{email},null,null,null);
+        Cursor cursor=database.query(CardDataEntry.TABLE_NAME,new String[]{coulmnName},CardDataEntry.EMAIL+" =? ",new String[]{email},null,null,null);
         cursor.moveToFirst();
-        String userName=cursor.getString(0);
+        if (cursor.getCount()>0)
+        userName=cursor.getString(0);
         cursor.close();
         return userName;
 
     }
+
+
 
     public static void clearDatabase(Context context) {
         context.getContentResolver().delete(CardEntry.CONTENT_URI, null, null);

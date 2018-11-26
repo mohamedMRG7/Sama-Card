@@ -57,7 +57,7 @@ public class NormalCardActvitiy extends AppCompatActivity implements OnClickList
         }
        // Glide.with((FragmentActivity) this).load(photoLink).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(normalcardBinding.imgLogo);
         Picasso.with(this).load(photoLink).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(normalcardBinding.imgLogo);
-        Picasso.with(this).load(photoLink).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(normalcardBinding.imgAvatar);
+
 
     }
 

@@ -17,4 +17,5 @@ public class CommonStaticKeys {
     public static final String ACCEPTED = "true";
     public static final String NOT_ACCEPTED = "false";
     public static final String USER_DATA_KEY="userdata";
+    public static final String AVATAR="avatar";
 }

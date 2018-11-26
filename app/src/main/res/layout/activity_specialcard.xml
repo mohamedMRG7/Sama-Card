@@ -35,9 +35,7 @@
 
 
 
-            <android.support.v7.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
@@ -74,7 +72,7 @@
                 </android.support.constraint.ConstraintLayout>
 
 
-            </android.support.v7.widget.Toolbar>
+
 
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -118,7 +116,7 @@
 
 
                         <TextView
-                            android:layout_marginTop="55dp"
+                            android:layout_marginTop="8dp"
                             android:layout_gravity="center"
                             android:id="@+id/tv_name"
                             style="@style/textViewDataCardStyle" />
@@ -343,23 +341,6 @@
 
 </android.support.v4.widget.NestedScrollView>
 
-        <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/img_avatar"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:src="@drawable/bsetlogo"
-            app:civ_border_color="@color/colorPrimary"
-            app:civ_border_width="4dp"
-            app:civ_shadow="true"
-            app:civ_shadow_color="#ff8bc34a"
-            app:civ_shadow_radius="10.0"
-            app:layout_constraintEnd_toEndOf="@id/frame"
-            app:layout_constraintStart_toStartOf="@id/frame"
-            app:layout_constraintTop_toTopOf="@id/frame"
-            app:layout_anchor="@id/appbar"
-            app:layout_anchorGravity="center|bottom"/>
 
 
         <android.support.design.widget.FloatingActionButton
@@ -368,9 +349,10 @@
             android:layout_height="60dp"
             android:layout_gravity="bottom|end|center"
             android:layout_margin="16dp"
-            android:src="@drawable/ic_telephone"
+            android:src="@drawable/ic_chat"
 
             />
+
 
     </android.support.design.widget.CoordinatorLayout>
 

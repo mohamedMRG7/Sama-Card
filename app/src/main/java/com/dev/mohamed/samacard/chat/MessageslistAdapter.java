@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
+import android.support.constraint.Group;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import com.dev.mohamed.samacard.CommonStaticKeys;
 import com.dev.mohamed.samacard.R;
 import com.dev.mohamed.samacard.contentProvider.CardsContentProvider;
+import com.dev.mohamed.samacard.sqliteDb.DbContract;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,17 +44,23 @@ public class MessageslistAdapter extends RecyclerView.Adapter<MessageslistAdapte
 
         cursor.moveToPosition(i);
 
-        String avatar;
+
         String email =cursor.getString(cursor.getColumnIndex(ChatDbContract.SENDER));
-        String userName=CardsContentProvider.getUserName(context,email);
+        String userName=CardsContentProvider.getSpecificData(context,DbContract.CardDataEntry.USER_NAME,email);
+        String avatar=CardsContentProvider.getSpecificData(context,DbContract.CardDataEntry.PHOTO_LINK,email);
         String lastMessage=LocalDbUtalis.lastMessage(context,email);
         int unSeenMessagesNum=LocalDbUtalis.getUnSeenMessagesNum(context,email);
+
+        if (unSeenMessagesNum>0)
+            holder.unSeenViewContainer.setVisibility(View.VISIBLE);
+        else
+            holder.unSeenViewContainer.setVisibility(View.GONE);
 
         holder.tvUserName.setText(userName);
         holder.tvMessage.setText(lastMessage);
         holder.tvUnReadedMessages.setText(String.valueOf(unSeenMessagesNum));
 
-
+        Picasso.with(context).load(avatar).placeholder(R.drawable.loading).into(holder.imgAvatar);
     }
 
     public void setUsrsChatList(Cursor cursor)
@@ -75,6 +84,8 @@ public class MessageslistAdapter extends RecyclerView.Adapter<MessageslistAdapte
         TextView tvMessage;
         @BindView(R.id.tv_unReadedMessages)
         TextView tvUnReadedMessages;
+        @BindView(R.id.unSeenViewContainer)
+        Group unSeenViewContainer;
         public MessagesListAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);

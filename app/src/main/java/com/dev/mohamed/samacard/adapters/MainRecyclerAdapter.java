@@ -103,7 +103,9 @@ public class MainRecyclerAdapter extends Adapter<MainRecyclerAdapter.MainRecycel
     public int getItemCount() {
         if (this.cursor == null) {
             return 0;
-        }
-        return this.cursor.getCount();
+        }else if (cursor.getCount()>15)
+        return 15;
+        else
+            return cursor.getCount();
     }
 }

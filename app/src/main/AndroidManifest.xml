@@ -24,6 +24,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
         </activity>
 
@@ -53,7 +54,8 @@
             android:name=".card.SpecialCardActivity"
             android:theme="@style/CardThem" />
         <activity android:name=".chat.ChatActivity" />
-        <activity android:name=".chat.MessagesListActivity"></activity>
+        <activity android:name=".chat.MessagesListActivity"
+            android:theme="@style/AppTheme.WithActionBar"></activity>
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatAdapterPla
         int seen=cursor.getInt(cursor.getColumnIndex(ChatDbContract.SEEN));
         String dateAndTime=cursor.getString(cursor.getColumnIndex(ChatDbContract.DATE_AND_TIME));
         String[]dateTime=dateAndTime.split(" ");
-
+        Log.e("Main",sender);
         chatAdapterPlaceHolder.tvDate.setText(dateTime[0]);
         chatAdapterPlaceHolder.tvTime.setText(dateTime[1]);
 

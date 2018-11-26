@@ -86,7 +86,7 @@ public class LocalDbUtalis {
     {
         db=new LocalChatDb(context);
         SQLiteDatabase database= db.getReadableDatabase();
-        chatWith=chatWith.replace(".com","1com");
+
         Cursor cursor= database.query(TABLE_NAME,null,ChatDbContract.SENDER+" =? OR "+ChatDbContract.RESEVER+" =? ",new String[]{chatWith,chatWith},null,null,ChatDbContract.DATE_AND_TIME+" DESC","1");
         cursor.moveToFirst();
         String lastMessage=cursor.getString(cursor.getColumnIndex(ChatDbContract.MESSAGE));

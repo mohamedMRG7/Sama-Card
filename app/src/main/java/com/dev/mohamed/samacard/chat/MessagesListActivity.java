@@ -42,14 +42,14 @@ public class MessagesListActivity extends AppCompatActivity implements ChatFireB
 
     @Override
     public void message(Chat chat) {
-        String from=chat.getSender();
-        String to=chat.getReciver();
+        String from = chat.getSender().replace("+",".");
+        String to = chat.getReciver().replace("+",".");
 
         Cursor cursor=LocalDbUtalis.getListOfMessagedUSers(this,myEmail);
+        chat.setSender(from);
+        chat.setReciver(to);
         if (from.equals(myEmail)||to.equals(myEmail))
         {
-            chat.setSender(from.replace("1","."));
-            chat.setReciver(to.replace("1","."));
             LocalDbUtalis.insertChat(this,chat);
             adapter.setUsrsChatList(cursor);
             adapter.notifyDataSetChanged();

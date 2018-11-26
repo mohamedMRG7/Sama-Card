@@ -59,12 +59,12 @@
     <Spinner
         android:id="@+id/sp_country"
         style="@style/editTextAddCard"
-
+        android:entries="@array/governorates"
         />
 
     <Spinner
         android:id="@+id/sp_governorate"
-        android:entries="@array/governorates"
+
         style="@style/editTextAddCard"/>
 
     <EditText

@@ -1,7 +1,9 @@
 package com.dev.mohamed.samacard.card;
 
+import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
@@ -11,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dev.mohamed.samacard.CommonStaticKeys;
+import com.dev.mohamed.samacard.MainActivity;
 import com.dev.mohamed.samacard.R;
 import com.dev.mohamed.samacard.addCard.AddCardActivity;
 import com.dev.mohamed.samacard.chat.ChatActivity;
@@ -26,6 +30,7 @@ import com.dev.mohamed.samacard.contentProvider.CardsContentProvider;
 import com.dev.mohamed.samacard.databinding.ActivitySpecialcardBinding;
 import com.dev.mohamed.samacard.fireBase.DataBaseUtilies;
 import com.dev.mohamed.samacard.sqliteDb.DbContract.CardDataEntry;
+import com.dev.mohamed.samacard.user.UserCardData;
 import com.facebook.share.internal.ShareConstants;
 import com.squareup.picasso.Picasso;
 
@@ -40,13 +45,15 @@ public class SpecialCardActivity extends AppCompatActivity implements OnClickLis
     private String uId;
     private String webSite;
     private String whatapp;
-
+    AlertDialog dialog;
+    String userId;
+    String userEmail;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specialcard);
         specialcardBinding = (ActivitySpecialcardBinding) DataBindingUtil.setContentView(this, R.layout.activity_specialcard);
-        String userId = getIntent().getStringExtra(CommonStaticKeys.SPECIAL_CARD);
-        String userEmail = getIntent().getStringExtra(CommonStaticKeys.EMAIL_KEY);
+         userId = getIntent().getStringExtra(CommonStaticKeys.SPECIAL_CARD);
+         userEmail = getIntent().getStringExtra(CommonStaticKeys.EMAIL_KEY);
         Cursor cursor = CardsContentProvider.getUserWithId(this, userId);
         cursor.moveToFirst();
         String userName = cursor.getString(cursor.getColumnIndex(CardDataEntry.USER_NAME));
@@ -83,7 +90,25 @@ public class SpecialCardActivity extends AppCompatActivity implements OnClickLis
         }
    //     Glide.with((FragmentActivity) this).load(photoLink).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(specialcardBinding.imgLogo);
         Picasso.with(this).load(photoLink).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(specialcardBinding.imgLogo);
-        Picasso.with(this).load(photoLink).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(specialcardBinding.imgAvatar);
+
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setMessage(R.string.no_card_warn)
+                .setTitle(R.string.nocards)
+                .setPositiveButton(R.string.create_card, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent=new Intent(SpecialCardActivity.this,AddCardActivity.class);
+                        intent.putExtra(CommonStaticKeys.USER_DATA_KEY,MainActivity.getUserData());
+                        startActivity(intent);
+                    }
+                }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+               dialog.dismiss();
+            }
+        });
+        dialog=builder.create();
 
     }
 
@@ -195,8 +220,15 @@ public class SpecialCardActivity extends AppCompatActivity implements OnClickLis
 
     public void chat(View view) {
 
-        Intent intent=new Intent(this,ChatActivity.class);
-        intent.putExtra(CommonStaticKeys.EMAIL_KEY,email);
-        startActivity(intent);
+        boolean haveCard=!CardsContentProvider.getSpecificData(this,CardDataEntry.USER_NAME,MainActivity.getMyEmail()).isEmpty();
+        if (haveCard) {
+            Intent intent = new Intent(this, ChatActivity.class);
+            intent.putExtra(CommonStaticKeys.EMAIL_KEY, email);
+            intent.putExtra(CommonStaticKeys.AVATAR, photoLink);
+            startActivity(intent);
+        }else
+        {
+        dialog.show();
+        }
     }
 }

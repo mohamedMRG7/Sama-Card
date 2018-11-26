@@ -78,7 +78,7 @@ import static com.dev.mohamed.samacard.CommonStaticKeys.USER_DATA_KEY;
 public class MainActivity extends AppCompatActivity implements DataBaseUtilies.onResiveData, OnSearch, AnnoncementAction, ConnectivityChangeListener, LoaderCallbacks<Cursor> {
     private static final String KEY_ISFIRST_PREF = "isfirst";
     private MainRecyclerAdapter commercialAdapter;
-    private static UserCardData data;
+    private   static UserCardData data;
     private MainRecyclerAdapter farmingAdapter;
     private FragmentAnnoncement fragmentAnnoncement;
     private MainRecyclerAdapter generalAdapter;
@@ -128,8 +128,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (scrollRange == -1) {
                     scrollRange = appBarLayout.getTotalScrollRange();
-                    Log.e("Scroll Range",scrollRange+"");
-                    Log.e("verticalOffset",verticalOffset+"");
+
                 }
                 if (scrollRange + verticalOffset == 0) {
                     collapsingToolbarLayout.setTitle("Sama Card");
@@ -142,8 +141,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
                     vwGeneralLine.setBackgroundColor(Color.WHITE);
                     isShow = false;
                 }
-                Log.e("verticalOffset",verticalOffset+"");
-                Log.e("Scroll Range",scrollRange+"");
+
 
             }
 
@@ -510,5 +508,11 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
             KToast.normalToast(this, getString(R.string.aleardy_have_card_message), 80, KToast.LENGTH_LONG, R.drawable.ic_warning);
 
         }
+    }
+
+
+    public static UserCardData getUserData()
+    {
+        return data;
     }
 }

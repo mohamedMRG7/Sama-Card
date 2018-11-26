@@ -74,4 +74,8 @@
     <string name="you_dont_have_specialcard">يجب ان تملك كارت مميز لتستطيع اضافع عروض خاصه بك</string>
     <string name="your_card">الكارت الخاص بك</string>
     <string name="your_offer">العروض الخاصه بك</string>
+    <string name="no_card_warn">من فضلك انشئ البطاقه الخاصه بك لتتمكن من التحدث مع الاخرين</string>
+    <string name="no_card">لا يوجد بطاقه خاصه بك</string>
+    <string name="create_card">انشئ بطاقه</string>
+    <string name="cancel">الغاء</string>
 </resources>
