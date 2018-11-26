@@ -40,6 +40,7 @@ import com.dev.mohamed.samacard.ads.FragmentAnnoncement.AnnoncementAction;
 import com.dev.mohamed.samacard.ads.FragmentOfferAnoncement;
 import com.dev.mohamed.samacard.auth.AuthinticationActivity;
 import com.dev.mohamed.samacard.card.SpecialCardActivity;
+import com.dev.mohamed.samacard.chat.LocalDbUtalis;
 import com.dev.mohamed.samacard.chat.MessagesListActivity;
 import com.dev.mohamed.samacard.contentProvider.CardsContentProvider;
 import com.dev.mohamed.samacard.contentProvider.ContentProviderContract.CardEntry;
@@ -146,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
             }
 
         });
+
 
         data = (UserCardData) getIntent().getParcelableExtra(USER_DATA_KEY);
         loadedUsersList = new ArrayList();

@@ -22,14 +22,14 @@ public class MessagesListActivity extends AppCompatActivity implements ChatFireB
     @BindView(R.id.rvMessagesList)
     RecyclerView rvMessagesList;
 
-    private String myEmail;
+    private String myID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages_list);
         ButterKnife.bind(this);
 
-        myEmail=MainActivity.getMyEmail();
+        myID =MainActivity.getUserData().getUserId();
         adapter=new MessageslistAdapter(this);
         manager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rvMessagesList.setLayoutManager(manager);
@@ -42,23 +42,23 @@ public class MessagesListActivity extends AppCompatActivity implements ChatFireB
 
     @Override
     public void message(Chat chat) {
-        String from = chat.getSender().replace("+",".");
-        String to = chat.getReciver().replace("+",".");
 
-        Cursor cursor=LocalDbUtalis.getListOfMessagedUSers(this,myEmail);
-        chat.setSender(from);
-        chat.setReciver(to);
-        if (from.equals(myEmail)||to.equals(myEmail))
-        {
+
+        Cursor cursor=LocalDbUtalis.getListOfMessagedUSers(this, myID);
+
+
             LocalDbUtalis.insertChat(this,chat);
             adapter.setUsrsChatList(cursor);
             adapter.notifyDataSetChanged();
 
-        }
+
     }
 
     @Override
     public void seen(String messageID) {
         LocalDbUtalis.makeSeen(this,messageID);
+        Cursor cursor=LocalDbUtalis.getListOfMessagedUSers(this, myID);
+        adapter.setUsrsChatList(cursor);
+        adapter.notifyDataSetChanged();
     }
 }

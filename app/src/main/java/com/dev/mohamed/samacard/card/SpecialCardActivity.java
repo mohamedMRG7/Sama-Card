@@ -88,6 +88,9 @@ public class SpecialCardActivity extends AppCompatActivity implements OnClickLis
             specialcardBinding.btDeny.setVisibility(View.VISIBLE);
             specialcardBinding.btDeny.setOnClickListener(this);
         }
+
+        if (userName!=null&&userName.equals(email))
+            specialcardBinding.btChat.setVisibility(View.GONE);
    //     Glide.with((FragmentActivity) this).load(photoLink).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(specialcardBinding.imgLogo);
         Picasso.with(this).load(photoLink).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(specialcardBinding.imgLogo);
 
@@ -220,10 +223,10 @@ public class SpecialCardActivity extends AppCompatActivity implements OnClickLis
 
     public void chat(View view) {
 
-        boolean haveCard=!CardsContentProvider.getSpecificData(this,CardDataEntry.USER_NAME,MainActivity.getMyEmail()).isEmpty();
+        boolean haveCard=!CardsContentProvider.getSpecificData(this,CardDataEntry.USER_NAME,MainActivity.getUserData().getUserId()).isEmpty();
         if (haveCard) {
             Intent intent = new Intent(this, ChatActivity.class);
-            intent.putExtra(CommonStaticKeys.EMAIL_KEY, email);
+            intent.putExtra(CommonStaticKeys.KEY_UID, uId);
             intent.putExtra(CommonStaticKeys.AVATAR, photoLink);
             startActivity(intent);
         }else

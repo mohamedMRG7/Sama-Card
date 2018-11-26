@@ -10,10 +10,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.dev.mohamed.samacard.CommonStaticKeys;
 import com.dev.mohamed.samacard.MainActivity;
 import com.dev.mohamed.samacard.R;
+import com.dev.mohamed.samacard.contentProvider.CardsContentProvider;
+import com.dev.mohamed.samacard.sqliteDb.DbContract;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -23,10 +26,10 @@ import butterknife.ButterKnife;
 
 public class ChatActivity extends AppCompatActivity implements ChatFireBaseUtils.OnMessageResive ,View.OnClickListener {
 
-    private String myEmail ;
+    private String myID;
 
     ChatAdapter adapter;
-    String chatWithEmail;
+    String chatWithID;
     String avatar;
 
     @BindView(R.id.rvChat)
@@ -37,6 +40,8 @@ public class ChatActivity extends AppCompatActivity implements ChatFireBaseUtils
     ImageView imgSendMessage;
     @BindView(R.id.img_avatar)
     ImageView imgAvatar;
+    @BindView(R.id.tv_chatwith_name)
+    TextView tvChatWithName;
 
     ArrayList<Chat> chatList;
     LinearLayoutManager manager;
@@ -49,13 +54,15 @@ public class ChatActivity extends AppCompatActivity implements ChatFireBaseUtils
 
         ButterKnife.bind(this);
 
-        myEmail=MainActivity.getMyEmail();
+        myID =MainActivity.getUserData().getUserId();
 
-        chatWithEmail=getIntent().getExtras().getString(CommonStaticKeys.EMAIL_KEY);
-        avatar=getIntent().getExtras().getString(CommonStaticKeys.AVATAR);
+        chatWithID =getIntent().getExtras().getString(CommonStaticKeys.KEY_UID);
 
+        avatar=CardsContentProvider.getSpecificData(this,DbContract.CardDataEntry.PHOTO_LINK,chatWithID);
+        String chatWithName =CardsContentProvider.getSpecificData(this,DbContract.CardDataEntry.USER_NAME,chatWithID);
 
-        chatWithEmail=chatWithEmail.replace(".","+");
+        tvChatWithName.setText(chatWithName);
+
         handler = new Handler();
 
         chatList = new ArrayList<>();
@@ -78,24 +85,18 @@ public class ChatActivity extends AppCompatActivity implements ChatFireBaseUtils
 
     @Override
     public void message(Chat chat) {
-        String from = chat.getSender().replace("+",".");
-        String to = chat.getReciver().replace("+",".");
-        chatWithEmail=chatWithEmail.replace("+",".");
-        myEmail=myEmail.replace("+",".");
-
-        chat.setSender(from);
-        chat.setReciver(to);
-
+        String from = chat.getSender();
+        String to = chat.getReciver();
 
 
             LocalDbUtalis.insertChat(this,chat);
-            Cursor cursor=LocalDbUtalis.getAllChat(this,chatWithEmail);
+            Cursor cursor=LocalDbUtalis.getAllChat(this, chatWithID);
             adapter.updateChatList(cursor);
             adapter.notifyDataSetChanged();
             manager.scrollToPosition(0);
 
 
-        if (from.equals(chatWithEmail)&&!chat.isSeen())
+        if (from.equals(chatWithID)&&!chat.isSeen())
             ChatFireBaseUtils.setSeen(chat.getMessageId(),from,to);
 
 
@@ -108,16 +109,18 @@ public class ChatActivity extends AppCompatActivity implements ChatFireBaseUtils
     public void seen(String messageID) {
 
         LocalDbUtalis.makeSeen(this,messageID);
+        Cursor cursor=LocalDbUtalis.getAllChat(this, chatWithID);
+        adapter.updateChatList(cursor);
+        adapter.notifyDataSetChanged();
 
     }
 
     public void sendMessage(View view) {
         String message=edMessage.getText().toString();
         edMessage.setText("");
-        chatWithEmail=chatWithEmail.replace(".","+");
-        myEmail=myEmail.replace(".","+");
-        Log.e("Mainc",myEmail);
-        ChatFireBaseUtils.sendMessage(myEmail,chatWithEmail,message);
+
+
+        ChatFireBaseUtils.sendMessage(myID, chatWithID,message);
     }
 
     @Override

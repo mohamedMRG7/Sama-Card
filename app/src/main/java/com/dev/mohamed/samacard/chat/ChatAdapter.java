@@ -40,12 +40,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatAdapterPla
         int seen=cursor.getInt(cursor.getColumnIndex(ChatDbContract.SEEN));
         String dateAndTime=cursor.getString(cursor.getColumnIndex(ChatDbContract.DATE_AND_TIME));
         String[]dateTime=dateAndTime.split(" ");
-        Log.e("Main",sender);
+
         chatAdapterPlaceHolder.tvDate.setText(dateTime[0]);
         chatAdapterPlaceHolder.tvTime.setText(dateTime[1]);
 
-        if (sender.equals(MainActivity.getMyEmail()))
-            chatAdapterPlaceHolder.message.setTextColor(Color.GREEN);
+        if (sender.equals(MainActivity.getUserData().getUserId()))
+            chatAdapterPlaceHolder.message.setTextColor(Color.CYAN);
         else
             chatAdapterPlaceHolder.message.setTextColor(Color.BLACK);
 
@@ -64,7 +64,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatAdapterPla
     public int getItemViewType(int i) {
         cursor.moveToPosition(i);
         String sender=cursor.getString(cursor.getColumnIndex(ChatDbContract.SENDER));
-            if (sender.equals(MainActivity.getMyEmail())) {
+            if (sender.equals(MainActivity.getUserData().getUserId())) {
                  return R.layout.rv_chatadapter_item;
 
             }else

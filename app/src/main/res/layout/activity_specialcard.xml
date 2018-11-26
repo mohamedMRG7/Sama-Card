@@ -350,6 +350,7 @@
             android:layout_gravity="bottom|end|center"
             android:layout_margin="16dp"
             android:src="@drawable/ic_chat"
+            android:id="@+id/bt_chat"
 
             />
 

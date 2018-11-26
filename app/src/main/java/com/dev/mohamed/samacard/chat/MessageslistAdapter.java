@@ -45,12 +45,13 @@ public class MessageslistAdapter extends RecyclerView.Adapter<MessageslistAdapte
         cursor.moveToPosition(i);
 
 
-        String email =cursor.getString(cursor.getColumnIndex(ChatDbContract.SENDER));
-        String userName=CardsContentProvider.getSpecificData(context,DbContract.CardDataEntry.USER_NAME,email);
-        String avatar=CardsContentProvider.getSpecificData(context,DbContract.CardDataEntry.PHOTO_LINK,email);
-        String lastMessage=LocalDbUtalis.lastMessage(context,email);
-        int unSeenMessagesNum=LocalDbUtalis.getUnSeenMessagesNum(context,email);
+        String uID =cursor.getString(cursor.getColumnIndex(ChatDbContract.SENDER));
+        String userName=CardsContentProvider.getSpecificData(context,DbContract.CardDataEntry.USER_NAME,uID);
+        String avatar=CardsContentProvider.getSpecificData(context,DbContract.CardDataEntry.PHOTO_LINK,uID);
+        String lastMessage=LocalDbUtalis.lastMessage(context,uID);
+        int unSeenMessagesNum=LocalDbUtalis.getUnSeenMessagesNum(context,uID);
 
+        Log.e("Main"," uID="+uID+" userNAme= "+userName+" avatar= "+avatar+" lastMessage="+lastMessage);
         if (unSeenMessagesNum>0)
             holder.unSeenViewContainer.setVisibility(View.VISIBLE);
         else
@@ -96,10 +97,12 @@ public class MessageslistAdapter extends RecyclerView.Adapter<MessageslistAdapte
         public void onClick(View v) {
 
             cursor.moveToPosition(getAdapterPosition());
-            String email =cursor.getString(cursor.getColumnIndex(ChatDbContract.SENDER));
+            String uId =cursor.getString(cursor.getColumnIndex(ChatDbContract.SENDER));
 
             Intent intent =new Intent(context,ChatActivity.class);
-            intent.putExtra(CommonStaticKeys.EMAIL_KEY,email);
+            intent.putExtra(CommonStaticKeys.KEY_UID,uId);
+
+
             context.startActivity(intent);
 
         }

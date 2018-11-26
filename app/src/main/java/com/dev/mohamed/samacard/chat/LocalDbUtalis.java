@@ -56,6 +56,14 @@ public class LocalDbUtalis {
     }
 
 
+    public static void clear(Context context)
+    {
+        db=new LocalChatDb(context);
+        SQLiteDatabase database= db.getWritableDatabase();
+        database.delete(LocalChatDb.TABLE_NAME,null,null);
+
+
+    }
   /*  public static String [] getTheUnSeenMessages(Context context,String chatWith)
     {
         db=new LocalChatDb(context);
@@ -72,14 +80,14 @@ public class LocalDbUtalis {
 
     }*/
 
-    public static Cursor getListOfMessagedUSers(Context context , String myEmail)
+    public static Cursor getListOfMessagedUSers(Context context , String uID)
     {
         db=new LocalChatDb(context);
         SQLiteDatabase database= db.getReadableDatabase();
 
-    return         database.rawQuery("SELECT DISTINCT "+ChatDbContract.SENDER +" FROM "+TABLE_NAME +" WHERE "+ChatDbContract.SENDER+" NOT LIKE '"+myEmail
+    return         database.rawQuery("SELECT DISTINCT "+ChatDbContract.SENDER +" FROM "+TABLE_NAME +" WHERE "+ChatDbContract.SENDER+" NOT LIKE '"+uID
                 +"' UNION "+
-                "SELECT DISTINCT "+ChatDbContract.RESEVER +" FROM "+TABLE_NAME+" WHERE "+ChatDbContract.RESEVER+" NOT LIKE '"+myEmail+"'",null);
+                "SELECT DISTINCT "+ChatDbContract.RESEVER +" FROM "+TABLE_NAME+" WHERE "+ChatDbContract.RESEVER+" NOT LIKE '"+uID+"'",null);
     }
 
     public static String lastMessage(Context context, String chatWith)

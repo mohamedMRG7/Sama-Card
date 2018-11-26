@@ -216,15 +216,15 @@ public class CardsContentProvider extends ContentProvider {
         context.getContentResolver().delete(CardEntry.CONTENT_URI.buildUpon().appendPath(id).build(), null, null);
     }
 
-    public static String getSpecificData(Context context,String coulmnName,String email)
-    {   String userName="";
+    public static String getSpecificData(Context context,String coulmnName,String uID)
+    {   String userID="";
         SQLiteDatabase database = new DbHelper(context).getReadableDatabase();
-        Cursor cursor=database.query(CardDataEntry.TABLE_NAME,new String[]{coulmnName},CardDataEntry.EMAIL+" =? ",new String[]{email},null,null,null);
+        Cursor cursor=database.query(CardDataEntry.TABLE_NAME,new String[]{coulmnName},CardDataEntry.USER_ID+" =? ",new String[]{uID},null,null,null);
         cursor.moveToFirst();
         if (cursor.getCount()>0)
-        userName=cursor.getString(0);
+        userID=cursor.getString(0);
         cursor.close();
-        return userName;
+        return userID;
 
     }
 
