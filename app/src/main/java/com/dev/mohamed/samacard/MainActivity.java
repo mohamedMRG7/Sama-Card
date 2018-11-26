@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
 
         });
 
-
+        //data
         data = (UserCardData) getIntent().getParcelableExtra(USER_DATA_KEY);
         loadedUsersList = new ArrayList();
         setupCommercialrv();
