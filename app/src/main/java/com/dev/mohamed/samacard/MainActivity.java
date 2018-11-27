@@ -1,16 +1,15 @@
 package com.dev.mohamed.samacard;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.Group;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
@@ -19,14 +18,15 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +40,9 @@ import com.dev.mohamed.samacard.ads.FragmentAnnoncement.AnnoncementAction;
 import com.dev.mohamed.samacard.ads.FragmentOfferAnoncement;
 import com.dev.mohamed.samacard.auth.AuthinticationActivity;
 import com.dev.mohamed.samacard.card.SpecialCardActivity;
+import com.dev.mohamed.samacard.chat.Chat;
+import com.dev.mohamed.samacard.chat.ChatActivity;
+import com.dev.mohamed.samacard.chat.ChatFireBaseUtils;
 import com.dev.mohamed.samacard.chat.LocalDbUtalis;
 import com.dev.mohamed.samacard.chat.MessagesListActivity;
 import com.dev.mohamed.samacard.contentProvider.CardsContentProvider;
@@ -56,6 +59,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.onurkaganaldemir.ktoastlib.KToast;
+import com.squareup.picasso.Picasso;
 import com.zplesac.connectionbuddy.ConnectionBuddy;
 import com.zplesac.connectionbuddy.interfaces.ConnectivityChangeListener;
 import com.zplesac.connectionbuddy.models.ConnectivityEvent;
@@ -76,7 +80,7 @@ import static com.dev.mohamed.samacard.CommonStaticKeys.NOT_ACCEPTED;
 import static com.dev.mohamed.samacard.CommonStaticKeys.SPECIAL_CARD;
 import static com.dev.mohamed.samacard.CommonStaticKeys.USER_DATA_KEY;
 
-public class MainActivity extends AppCompatActivity implements DataBaseUtilies.onResiveData, OnSearch, AnnoncementAction, ConnectivityChangeListener, LoaderCallbacks<Cursor> {
+public class MainActivity extends AppCompatActivity implements DataBaseUtilies.onResiveData, OnSearch, AnnoncementAction, ConnectivityChangeListener, LoaderCallbacks<Cursor> ,ChatFireBaseUtils.OnMessageResive ,View.OnClickListener {
     private static final String KEY_ISFIRST_PREF = "isfirst";
     private MainRecyclerAdapter commercialAdapter;
     private   static UserCardData data;
@@ -108,9 +112,24 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
     TextView tvGeneral;
     @BindView(R.id.vw_genralLine)
     View vwGeneralLine;
+
+
+    @BindView(R.id.img_avatar)
+    ImageView imgAvatar;
+    @BindView(R.id.tv_userName)
+    TextView tvUserName;
+    @BindView(R.id.tv_message)
+    TextView tvLastMessage;
+    @BindView(R.id.unSeenViewContainer)
+    Group unSeenView;
+    @BindView(R.id.tv_unReadedMessages)
+    TextView tvUnReadedMessages;
+    @BindView(R.id.cd_messageCard)
+    CardView cdMessageCard;
+
     private FragmentSearch search;
     private MainRecyclerAdapter servicisAdapter;
-
+    private String mainViewchatWithID;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,7 +167,8 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
 
         });
 
-        //data
+
+
         data = (UserCardData) getIntent().getParcelableExtra(USER_DATA_KEY);
         loadedUsersList = new ArrayList();
         setupCommercialrv();
@@ -157,15 +177,66 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
         setupHoppyyrv();
         setupIndustryrv();
         setupServicesrv();
+
+
         if (data.getEmail().equals(ADMIN_EMAIL)) {
-            Toast.makeText(this, "Welcom Mr Rabiee", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.admin_wellcom_message, Toast.LENGTH_SHORT).show();
         }
         if (!(isFirst() || data.getEmail().equals(ADMIN_EMAIL))) {
             showOffer();
+            setLastMessageData();
         }
         isFragmentOpen = false;
         search = new FragmentSearch();
         DataBaseUtilies.getDataFromDb(this, this);
+        ChatFireBaseUtils.ReciveMessages(this);
+        cdMessageCard.setOnClickListener(this);
+
+    }
+
+    private void setLastMessageData()
+    {
+        Chat lastChat=LocalDbUtalis.getLastChat(this);
+        if (lastChat==null) {
+            cdMessageCard.setVisibility(View.GONE);
+            return;
+        }
+        String userName;
+        String avatar;
+        int numOFUnSeen;
+        if (!lastChat.getSender().equals(data.getUserId()))
+        {
+            userName=CardsContentProvider.getSpecificData(this,CardDataEntry.USER_NAME,lastChat.getSender());
+            avatar=CardsContentProvider.getSpecificData(this,CardDataEntry.PHOTO_LINK,lastChat.getSender());
+            numOFUnSeen=LocalDbUtalis.getUnSeenMessagesNum(this,lastChat.getSender());
+            mainViewchatWithID =lastChat.getSender();
+        }else
+            {
+                userName=CardsContentProvider.getSpecificData(this,CardDataEntry.USER_NAME,lastChat.getReciver());
+                avatar=CardsContentProvider.getSpecificData(this,CardDataEntry.PHOTO_LINK,lastChat.getReciver());
+                numOFUnSeen=LocalDbUtalis.getUnSeenMessagesNum(this,lastChat.getReciver());
+                mainViewchatWithID =lastChat.getReciver();
+            }
+
+            if (numOFUnSeen>0)
+            {
+                unSeenView.setVisibility(View.VISIBLE);
+                tvUnReadedMessages.setText(String.valueOf(numOFUnSeen));
+            }
+            if (!userName.isEmpty() ||!avatar.isEmpty()) {
+                tvUserName.setText(userName);
+                tvUserName.setTextColor(Color.BLACK);
+                tvLastMessage.setText(lastChat.getMeassage());
+                tvLastMessage.setTextColor(Color.GRAY);
+                Picasso.with(this).load(avatar).placeholder(R.drawable.loading).into(imgAvatar);
+            }else {
+                tvUserName.setText("User");
+                tvUserName.setTextColor(Color.RED);
+                tvLastMessage.setText(lastChat.getMeassage());
+                tvLastMessage.setTextColor(Color.GRAY);
+                Picasso.with(this).load(R.drawable.ic_error).into(imgAvatar);
+            }
+
     }
 
     private void setupGeneralrv() {
@@ -254,7 +325,6 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         if (isConteinthisId(this, data.getUserId())) {
-            menu.getItem(2).setIcon(R.drawable.ic_editecard);
             menu.getItem(View.VISIBLE).setVisible(true);
         }
         return true;
@@ -363,6 +433,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
 
     public void deleteUser(UserCardData data) {
         CardsContentProvider.deleteUserCard(data.getUserId(), this);
+
         loadData();
         invalidateOptionsMenu();
     }
@@ -376,10 +447,6 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
         removeFragment(search);
     }
 
-    public static String getMyEmail()
-    {
-        return data.getEmail();
-    }
 
     public void exit() {
         removeFragment(search);
@@ -516,5 +583,33 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
     public static UserCardData getUserData()
     {
         return data;
+    }
+
+    @Override
+    public void message(Chat chat) {
+
+        LocalDbUtalis.insertChat(this,chat);
+        if(!isFirst())
+        setLastMessageData();
+    }
+
+    @Override
+    public void seen(String messageID) {
+        LocalDbUtalis.makeSeen(this,messageID);
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id=view.getId();
+        switch (id)
+        {
+            case R.id.cd_messageCard:
+                unSeenView.setVisibility(View.GONE);
+                Intent intent=new Intent(this,ChatActivity.class);
+                intent.putExtra(CommonStaticKeys.KEY_UID, mainViewchatWithID);
+                startActivity(intent);
+        }
     }
 }

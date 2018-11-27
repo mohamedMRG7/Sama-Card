@@ -60,6 +60,17 @@ public class ChatActivity extends AppCompatActivity implements ChatFireBaseUtils
 
         avatar=CardsContentProvider.getSpecificData(this,DbContract.CardDataEntry.PHOTO_LINK,chatWithID);
         String chatWithName =CardsContentProvider.getSpecificData(this,DbContract.CardDataEntry.USER_NAME,chatWithID);
+        if (avatar.isEmpty() && chatWithName.isEmpty())
+        {
+            edMessage.setEnabled(false);
+            imgSendMessage.setEnabled(false);
+            chatWithName="user";
+            edMessage.setHint("User Dont Have Card Any More To Chat with");
+            Picasso.with(this).load(R.drawable.bsetlogo).into(imgAvatar);
+        }else
+        {
+            Picasso.with(this).load(avatar).into(imgAvatar);
+        }
 
         tvChatWithName.setText(chatWithName);
 
@@ -77,7 +88,7 @@ public class ChatActivity extends AppCompatActivity implements ChatFireBaseUtils
         edMessage.setOnClickListener(this);
 
 
-        Picasso.with(this).load(avatar).into(imgAvatar);
+
 
 
     }
@@ -98,9 +109,6 @@ public class ChatActivity extends AppCompatActivity implements ChatFireBaseUtils
 
         if (from.equals(chatWithID)&&!chat.isSeen())
             ChatFireBaseUtils.setSeen(chat.getMessageId(),from,to);
-
-
-
 
 
     }

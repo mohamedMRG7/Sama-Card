@@ -85,4 +85,6 @@
     <string name="no_card">No Card Found</string>
     <string name="create_card">Create Card</string>
     <string name="cancel">Cancel</string>
+    <string name="your_messages">Your Messages</string>
+    <string name="admin_wellcom_message">Welcom Mr Rabiee</string>
 </resources>

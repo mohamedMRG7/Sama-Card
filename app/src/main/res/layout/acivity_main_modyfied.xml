@@ -16,7 +16,7 @@
         >
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="300dp"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:id="@+id/appbar">
@@ -29,14 +29,27 @@
             android:id="@+id/collasping"
             android:fitsSystemWindows="true">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+            <LinearLayout
                 android:layout_width="match_parent"
-                app:layout_collapseMode="pin"
-                android:layout_height="?attr/actionBarSize">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    app:layout_collapseMode="pin"
+                    android:layout_height="?attr/actionBarSize">
+
+                </android.support.v7.widget.Toolbar>
+
+                <include
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/rv_messageslist_item"
+                    android:layout_margin="@dimen/paddingSmall"/>
 
 
-            </android.support.v7.widget.Toolbar>
+            </LinearLayout>
+
 
 
 
@@ -50,7 +63,7 @@
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/scroll"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:behavior_overlapTop="140dp"
+        app:behavior_overlapTop="120dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

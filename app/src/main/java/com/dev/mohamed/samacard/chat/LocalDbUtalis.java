@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import static com.dev.mohamed.samacard.chat.LocalChatDb.TABLE_NAME;
 
@@ -56,13 +57,19 @@ public class LocalDbUtalis {
     }
 
 
+    public static int deleteChat(Context context,String chatWith)
+    {
+        db=new LocalChatDb(context);
+        SQLiteDatabase database= db.getWritableDatabase();
+        return database.delete(LocalChatDb.TABLE_NAME,ChatDbContract.RESEVER+" =? OR "+ChatDbContract.SENDER+" =? ",new String[]{chatWith,chatWith});
+
+    }
+
     public static void clear(Context context)
     {
         db=new LocalChatDb(context);
         SQLiteDatabase database= db.getWritableDatabase();
         database.delete(LocalChatDb.TABLE_NAME,null,null);
-
-
     }
   /*  public static String [] getTheUnSeenMessages(Context context,String chatWith)
     {
@@ -101,6 +108,29 @@ public class LocalDbUtalis {
 
         cursor.close();
         return lastMessage;
+    }
+
+
+    public static Chat getLastChat(Context context)
+    {
+        db=new LocalChatDb(context);
+        SQLiteDatabase database= db.getReadableDatabase();
+        Cursor cursor=database.query(LocalChatDb.TABLE_NAME,null,null,null,null,null,ChatDbContract.DATE_AND_TIME+" DESC ");
+
+        if (cursor.getCount()>0) {
+            cursor.moveToFirst();
+            String from = cursor.getString(cursor.getColumnIndex(ChatDbContract.SENDER));
+            String to = cursor.getString(cursor.getColumnIndex(ChatDbContract.RESEVER));
+            String message = cursor.getString(cursor.getColumnIndex(ChatDbContract.MESSAGE));
+            String messageID = cursor.getString(cursor.getColumnIndex(ChatDbContract.MESSAGE_ID));
+            cursor.close();
+            db.close();
+            return new Chat(from,to,message,false,messageID,"");
+        }else {
+            cursor.close();
+            db.close();
+            return null;}
+
     }
 
 

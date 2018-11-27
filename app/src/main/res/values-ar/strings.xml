@@ -78,4 +78,6 @@
     <string name="no_card">لا يوجد بطاقه خاصه بك</string>
     <string name="create_card">انشئ بطاقه</string>
     <string name="cancel">الغاء</string>
+    <string name="your_messages">رسائلك</string>
+    <string name="admin_wellcom_message">Welcom Mr Rabiee</string>
 </resources>

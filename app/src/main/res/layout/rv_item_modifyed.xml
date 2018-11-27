@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/bsetlogo"
         android:scaleType="centerCrop"
+        android:background="@color/gray"
          />
 
 

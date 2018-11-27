@@ -3,6 +3,7 @@ package com.dev.mohamed.samacard.chat;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.constraint.Group;
 import android.support.v7.widget.RecyclerView;
@@ -51,17 +52,25 @@ public class MessageslistAdapter extends RecyclerView.Adapter<MessageslistAdapte
         String lastMessage=LocalDbUtalis.lastMessage(context,uID);
         int unSeenMessagesNum=LocalDbUtalis.getUnSeenMessagesNum(context,uID);
 
-        Log.e("Main"," uID="+uID+" userNAme= "+userName+" avatar= "+avatar+" lastMessage="+lastMessage);
+
         if (unSeenMessagesNum>0)
             holder.unSeenViewContainer.setVisibility(View.VISIBLE);
         else
             holder.unSeenViewContainer.setVisibility(View.GONE);
 
-        holder.tvUserName.setText(userName);
+
         holder.tvMessage.setText(lastMessage);
         holder.tvUnReadedMessages.setText(String.valueOf(unSeenMessagesNum));
-
-        Picasso.with(context).load(avatar).placeholder(R.drawable.loading).into(holder.imgAvatar);
+        if (!userName.isEmpty() && !avatar.isEmpty()) {
+            holder.tvUserName.setText(userName);
+            Picasso.with(context).load(avatar).placeholder(R.drawable.loading).into(holder.imgAvatar);
+        }else
+        {
+            //if user dont have card any more
+            holder.tvUserName.setTextColor(Color.RED);
+            holder.tvUserName.setText("User");
+            Picasso.with(context).load(R.drawable.bsetlogo).into(holder.imgAvatar);
+        }
     }
 
     public void setUsrsChatList(Cursor cursor)
