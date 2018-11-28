@@ -17,7 +17,11 @@ import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.AuthUI.IdpConfig;
 import com.firebase.ui.auth.AuthUI.IdpConfig.Builder;
 import com.firebase.ui.auth.AuthUI.SignInIntentBuilder;
+import com.firebase.ui.auth.IdpResponse;
+import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FacebookAuthCredential;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,61 +32,53 @@ import com.zplesac.connectionbuddy.models.ConnectivityEvent;
 import com.zplesac.connectionbuddy.models.ConnectivityState;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static com.dev.mohamed.samacard.CommonStaticKeys.APP_LOGO;
 import static com.dev.mohamed.samacard.CommonStaticKeys.USER_DATA_KEY;
 
-public class AuthinticationActivity extends AppCompatActivity implements Serializable, ConnectivityChangeListener ,AuthStateListener{
+public class AuthinticationActivity extends AppCompatActivity implements Serializable, ConnectivityChangeListener {
     private static final int RC_SIGN_IN = 1;
-    private AuthStateListener authStateListener;
     ActivityAuthBinding binding;
-    private FirebaseAuth firebaseAuth;
     private boolean isConnected = false;
 
 
-        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-            FirebaseUser user = firebaseAuth.getCurrentUser();
-            if (user != null) {
-                Intent intent = new Intent(AuthinticationActivity.this, MainActivity.class);
-                UserCardData cardData = new UserCardData();
-                cardData.setEmail(user.getEmail());
-                havePhoto(cardData, user);
-                cardData.setUserId(user.getUid());
-                cardData.setUserName(user.getDisplayName());
-                intent.putExtra(USER_DATA_KEY, cardData);
-                startActivity(intent);
-                finish();
-                return;
-            }else
-           startActivityForResult(((SignInIntentBuilder) ((SignInIntentBuilder) AuthUI.getInstance().createSignInIntentBuilder().setIsSmartLockEnabled(false)).setTheme(R.style.CardThem)).setLogo(R.drawable.logo)
-                   .setAvailableProviders(Arrays.asList(new Builder(EmailAuthProvider.PROVIDER_ID).build(), new Builder(AuthUI.GOOGLE_PROVIDER).build(), new Builder(AuthUI.FACEBOOK_PROVIDER).build())).build(), 1);
-        }
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
-        firebaseAuth = FirebaseAuth.getInstance();
-        authStateListener=this;
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth);
         sign_In();
         ConnectionBuddy.getInstance().init(new ConnectionBuddyConfiguration.Builder(this).build());
     }
 
     private void sign_In() {
-        authStateListener.onAuthStateChanged(firebaseAuth);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Intent intent = new Intent(AuthinticationActivity.this, MainActivity.class);
+            UserCardData cardData = new UserCardData();
+
+            if (user.getEmail()==null ||user.getEmail().isEmpty())
+                cardData.setEmail(getString(R.string.no_email));
+            else
+                cardData.setEmail(user.getEmail());
+
+            havePhoto(cardData, user);
+            cardData.setUserId(user.getUid());
+            cardData.setUserName(user.getDisplayName());
+            intent.putExtra(USER_DATA_KEY, cardData);
+            startActivity(intent);
+            finish();
+        }else {
+            startActivityForResult(((SignInIntentBuilder) ((SignInIntentBuilder) AuthUI.getInstance().createSignInIntentBuilder().setIsSmartLockEnabled(false)).setTheme(R.style.AppTheme)).setLogo(R.drawable.logo)
+                    .setAvailableProviders(Arrays.asList(new Builder(EmailAuthProvider.PROVIDER_ID).build(), new Builder(AuthUI.GOOGLE_PROVIDER).build(), new Builder(AuthUI.FACEBOOK_PROVIDER).build())).build(), RC_SIGN_IN);
+        }
     }
 
-    protected void onPause() {
-        super.onPause();
-        firebaseAuth.removeAuthStateListener(authStateListener);
-    }
-
-    protected void onResume() {
-        super.onResume();
-        firebaseAuth.addAuthStateListener(authStateListener);
-    }
 
     private void havePhoto(UserCardData data, FirebaseUser user) {
         try {
@@ -94,25 +90,30 @@ public class AuthinticationActivity extends AppCompatActivity implements Seriali
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode != 1) {
-            return;
-        }
-        if (resultCode == -1) {
-            try {
-                FirebaseUser firebaseuser = firebaseAuth.getCurrentUser();
-                Intent intent = new Intent(this, MainActivity.class);
-                UserCardData cardData = new UserCardData();
-                cardData.setEmail(firebaseuser.getEmail());
-                havePhoto(cardData, firebaseuser);
-                cardData.setUserId(firebaseuser.getUid());
-                cardData.setUserName(firebaseuser.getDisplayName());
-                intent.putExtra(USER_DATA_KEY, cardData);
-                startActivity(intent);
+        if (requestCode == RC_SIGN_IN) {
+
+            if (resultCode == RESULT_OK) {
+                try {
+                    FirebaseUser firebaseuser = FirebaseAuth.getInstance().getCurrentUser();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    UserCardData cardData = new UserCardData();
+
+                    if (firebaseuser.getEmail()==null ||firebaseuser.getEmail().isEmpty())
+                        cardData.setEmail(getString(R.string.no_email));
+                    else
+                    cardData.setEmail(firebaseuser.getEmail());
+
+                    havePhoto(cardData, firebaseuser);
+                    cardData.setUserId(firebaseuser.getUid());
+                    cardData.setUserName(firebaseuser.getDisplayName());
+                    intent.putExtra(USER_DATA_KEY, cardData);
+                    startActivity(intent);
+                    finish();
+                } catch (Exception e) {
+                }
+            } else if (resultCode == RESULT_CANCELED && isConnected) {
                 finish();
-            } catch (Exception e) {
             }
-        } else if (resultCode == 0 && isConnected) {
-            finish();
         }
     }
 

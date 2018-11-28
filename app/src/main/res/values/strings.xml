@@ -27,10 +27,10 @@
     <string name="copy_message">Copied To Clipboard</string>
     <string name="direct_number">Direct Number</string>
     <string name="dissconnection_message">You are disconnected from internet</string>
-    <string name="dp_notavailble">Not Available</string>
+    <string name="dp_notavailble"   translatable="false">Not Available</string>
     <string name="email">Email</string>
-    <string name="facebook_application_id">987731024723448</string>
-    <string name="facebook_login_protocol_scheme">fbYOUR_APP_ID</string>
+    <string name="facebook_application_id" translatable="false">987731024723448</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fbYOUR_APP_ID</string>
     <string name="facebook_page">FaceBook Page</string>
     <string name="faied_card_addition">Failed to add card ,please check connection and try again</string>
     <string name="failed_removing_card">Error whil removing card,please check connecton and try again</string>
@@ -87,4 +87,6 @@
     <string name="cancel">Cancel</string>
     <string name="your_messages">Your Messages</string>
     <string name="admin_wellcom_message">Welcom Mr Rabiee</string>
+    <string name="no_email" translatable="false">No email</string>
+    <string name="hello_message">Welcome to SamaCard if u need any help please send to me</string>
 </resources>

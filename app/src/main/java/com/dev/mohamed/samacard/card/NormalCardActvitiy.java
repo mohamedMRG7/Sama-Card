@@ -4,14 +4,19 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.dev.mohamed.samacard.CommonStaticKeys;
@@ -32,7 +37,15 @@ public class NormalCardActvitiy extends AppCompatActivity implements OnClickList
     private String offcialNumber;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        }
         setContentView(R.layout.activity_normalcard);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setEnterTransition(new Explode());
+        }
+
         normalcardBinding = (ActivityNormalcardBinding) DataBindingUtil.setContentView(this, R.layout.activity_normalcard);
         String userId = getIntent().getStringExtra(CommonStaticKeys.NORMAL_CARD);
         String useremail = getIntent().getStringExtra(CommonStaticKeys.EMAIL_KEY);

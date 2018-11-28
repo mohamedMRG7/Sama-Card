@@ -3,6 +3,7 @@
     android:layout_width="150dp"
     android:layout_height="210dp"
     android:layout_margin="8dp"
+    app:cardCornerRadius="@dimen/paddingMedium"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -10,9 +11,8 @@
         android:id="@+id/img_logo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/bsetlogo"
         android:scaleType="centerCrop"
-        android:background="@color/gray"
+        android:background="@color/bootstrap_gray_light"
          />
 
 

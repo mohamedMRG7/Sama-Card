@@ -1,8 +1,11 @@
 package com.dev.mohamed.samacard.adapters;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
@@ -27,7 +30,7 @@ import com.squareup.picasso.Picasso;
 //Main adapter displaying cards in the main screen
 
 public class MainRecyclerAdapter extends Adapter<MainRecyclerAdapter.MainRecycelerAdapterViewholder> {
-    private Context context;
+    private Activity context;
     private Cursor cursor;
     private String email;
 
@@ -59,21 +62,28 @@ public class MainRecyclerAdapter extends Adapter<MainRecyclerAdapter.MainRecycel
                 intent = new Intent(context, SpecialCardActivity.class);
                 intent.putExtra(CommonStaticKeys.SPECIAL_CARD, positionUserId);
                 intent.putExtra(CommonStaticKeys.EMAIL_KEY, MainRecyclerAdapter.this.email);
-                context.startActivity(intent);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    context.startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(context).toBundle());
+                }
+                else  context.startActivity(intent);
             }
             if (cardType.equals(CommonStaticKeys.NORMAL_CARD)) {
                 intent = new Intent(context, NormalCardActvitiy.class);
                 intent.putExtra(CommonStaticKeys.NORMAL_CARD, positionUserId);
                 intent.putExtra(CommonStaticKeys.EMAIL_KEY, email);
-               context.startActivity(intent);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    context.startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(context).toBundle());
+                }
+                else  context.startActivity(intent);
             }
         }
     }
 
 
 
-    public MainRecyclerAdapter(String email) {
+    public MainRecyclerAdapter(Activity activity,String email) {
         this.email = email;
+        this.context=activity;
     }
 
     public void updateCursor(Cursor cursor) {
@@ -82,7 +92,7 @@ public class MainRecyclerAdapter extends Adapter<MainRecyclerAdapter.MainRecycel
     }
 
     public MainRecycelerAdapterViewholder onCreateViewHolder(ViewGroup parent, int viewType) {
-        this.context = parent.getContext();
+
         return new MainRecycelerAdapterViewholder(LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item_modifyed, parent, false));
     }
 

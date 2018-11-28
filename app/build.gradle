@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyPassword '132546879'
+            storeFile file('C:/Users/moham/Downloads/apkkey.jks')
+            storePassword '132546879'
+            keyAlias 'key0'
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.dev.mohamed.samacard"
@@ -15,9 +23,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable true
+            signingConfig signingConfigs.config
         }
     }
-
     dataBinding.enabled = true
 }
 repositories {
@@ -25,7 +34,7 @@ repositories {
     google()
 }
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.0.2'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.google.firebase:firebase-core:11.8.0'
@@ -45,8 +54,6 @@ dependencies {
     implementation 'com.beardedhen:androidbootstrap:2.3.2'
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
     implementation 'com.github.markushi:circlebutton:1.1'
-
     implementation 'com.github.onurkagan:ktoast:1.0.2'
-
 }
 apply plugin: 'com.google.gms.google-services'

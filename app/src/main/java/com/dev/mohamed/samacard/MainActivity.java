@@ -82,6 +82,7 @@ import static com.dev.mohamed.samacard.CommonStaticKeys.USER_DATA_KEY;
 
 public class MainActivity extends AppCompatActivity implements DataBaseUtilies.onResiveData, OnSearch, AnnoncementAction, ConnectivityChangeListener, LoaderCallbacks<Cursor> ,ChatFireBaseUtils.OnMessageResive ,View.OnClickListener {
     private static final String KEY_ISFIRST_PREF = "isfirst";
+    private boolean isCardsLoaded=false;
     private MainRecyclerAdapter commercialAdapter;
     private   static UserCardData data;
     private MainRecyclerAdapter farmingAdapter;
@@ -131,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
     private MainRecyclerAdapter servicisAdapter;
     private String mainViewchatWithID;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acivity_main_modyfied);
@@ -169,8 +171,8 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
 
 
 
-        data = (UserCardData) getIntent().getParcelableExtra(USER_DATA_KEY);
-        loadedUsersList = new ArrayList();
+        data =  getIntent().getParcelableExtra(USER_DATA_KEY);
+        loadedUsersList = new ArrayList<>();
         setupCommercialrv();
         setupFarmingrv();
         setupGeneralrv();
@@ -184,8 +186,8 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
         }
         if (!(isFirst() || data.getEmail().equals(ADMIN_EMAIL))) {
             showOffer();
-            setLastMessageData();
         }
+        setLastMessageData();
         isFragmentOpen = false;
         search = new FragmentSearch();
         DataBaseUtilies.getDataFromDb(this, this);
@@ -200,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
         if (lastChat==null) {
             cdMessageCard.setVisibility(View.GONE);
             return;
-        }
+        }else  cdMessageCard.setVisibility(View.VISIBLE);
         String userName;
         String avatar;
         int numOFUnSeen;
@@ -217,6 +219,8 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
                 numOFUnSeen=LocalDbUtalis.getUnSeenMessagesNum(this,lastChat.getReciver());
                 mainViewchatWithID =lastChat.getReciver();
             }
+            if (lastChat.getSender().equals(CommonStaticKeys.ADMIN_UID) ||lastChat.getReciver().equals(CommonStaticKeys.ADMIN_UID))
+                userName=CommonStaticKeys.APP_NAME;
 
             if (numOFUnSeen>0)
             {
@@ -241,42 +245,42 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
 
     private void setupGeneralrv() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, 0, false);
-        generalAdapter = new MainRecyclerAdapter(data.getEmail());
+        generalAdapter = new MainRecyclerAdapter(this,data.getEmail());
         rvGeneral.setLayoutManager(layoutManager);
         rvGeneral.setAdapter(generalAdapter);
     }
 
     private void setupServicesrv() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, 0, false);
-        servicisAdapter = new MainRecyclerAdapter(data.getEmail());
+        servicisAdapter = new MainRecyclerAdapter(this,data.getEmail());
         rvServices.setLayoutManager(layoutManager);
         rvServices.setAdapter(servicisAdapter);
     }
 
     private void setupCommercialrv() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, 0, false);
-        commercialAdapter = new MainRecyclerAdapter(data.getEmail());
+        commercialAdapter = new MainRecyclerAdapter(this,data.getEmail());
         rvCommercial.setLayoutManager(layoutManager);
         rvCommercial.setAdapter(commercialAdapter);
     }
 
     private void setupFarmingrv() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, 0, false);
-        farmingAdapter = new MainRecyclerAdapter(data.getEmail());
+        farmingAdapter = new MainRecyclerAdapter(this,data.getEmail());
         rvFarming.setLayoutManager(layoutManager);
         rvFarming.setAdapter(farmingAdapter);
     }
 
     private void setupIndustryrv() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, 0, false);
-        industryAdapter = new MainRecyclerAdapter(data.getEmail());
+        industryAdapter = new MainRecyclerAdapter(this,data.getEmail());
         rvIndustry.setLayoutManager(layoutManager);
         rvIndustry.setAdapter(industryAdapter);
     }
 
     private void setupHoppyyrv() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, 0, false);
-        hopyAdapter = new MainRecyclerAdapter(data.getEmail());
+        hopyAdapter = new MainRecyclerAdapter(this,data.getEmail());
         rvHoppy.setLayoutManager(layoutManager);
         rvHoppy.setAdapter(hopyAdapter);
     }
@@ -300,6 +304,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
     private boolean isFirst() {
         SharedPreferences annoncementPrefrence = getPreferences(View.VISIBLE);
         boolean isFirst = annoncementPrefrence.getBoolean(KEY_ISFIRST_PREF, true);
+
         if (isFirst && isConnected) {
             Editor editor = annoncementPrefrence.edit();
             editor.putBoolean(KEY_ISFIRST_PREF, false);
@@ -321,7 +326,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
             addFragment(mOfferAnoncement);
         }
     }
-
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         if (isConteinthisId(this, data.getUserId())) {
@@ -333,7 +338,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
     private static boolean isConteinthisId(Context context, String id) {
         return CardsContentProvider.getUserWithId(context, id).getCount() != 0;
     }
-
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_aboutus:
@@ -403,7 +408,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
         }
         return false;
     }
-
+    @Override
     public void resiveData(UserCardData data) {
         CardsContentProvider.insertCardToDb(data, this);
         loadedUsersList.add(data.getUserId());
@@ -411,7 +416,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
             DataBaseUtilies.deleteCard(data.getUserId(), this, data.getPhotoLink(), data.getOfferImg());
         }
     }
-
+    @Override
     public void lastReseved() {
         Cursor cursor = getContentResolver().query(CardEntry.CONTENT_URI, null, null, null, null);
         if (cursor != null) {
@@ -429,8 +434,11 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
                 }
             }
         }
+        isCardsLoaded=true;
+        LocalDbUtalis.sendHelloMessage(this);
+        setLastMessageData();
     }
-
+    @Override
     public void deleteUser(UserCardData data) {
         CardsContentProvider.deleteUserCard(data.getUserId(), this);
 
@@ -472,6 +480,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
         AuthUI.getInstance().signOut(getApplicationContext()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+                LocalDbUtalis.clearChatDb(MainActivity.this);
                 startActivity(new Intent(MainActivity.this,AuthinticationActivity.class));
             }
         });
@@ -589,14 +598,12 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
     public void message(Chat chat) {
 
         LocalDbUtalis.insertChat(this,chat);
-        if(!isFirst())
+        if(isCardsLoaded)
         setLastMessageData();
     }
 
     @Override
     public void seen(String messageID) {
-        LocalDbUtalis.makeSeen(this,messageID);
-
 
     }
 

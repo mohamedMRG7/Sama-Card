@@ -6,12 +6,21 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.dev.mohamed.samacard.CommonStaticKeys;
+import com.dev.mohamed.samacard.MainActivity;
+import com.dev.mohamed.samacard.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Random;
+
 import static com.dev.mohamed.samacard.chat.LocalChatDb.TABLE_NAME;
 
 
 public class LocalDbUtalis {
 
-    static LocalChatDb db;
+    private static LocalChatDb db;
 
     public static void insertChat(Context context, Chat chat)
     {
@@ -24,6 +33,24 @@ public class LocalDbUtalis {
         values.put(ChatDbContract.MESSAGE_ID,chat.getMessageId());
         values.put(ChatDbContract.DATE_AND_TIME,chat.getDateAndTime());
         values.put(ChatDbContract.SEEN,chat.isSeen());
+
+        database.insertWithOnConflict(TABLE_NAME,null,values,SQLiteDatabase.CONFLICT_REPLACE);
+    }
+
+    public static void sendHelloMessage(Context context)
+    {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+        String currentDateandTime = sdf.format(new Date());
+        db=new LocalChatDb(context);
+        SQLiteDatabase database=db.getWritableDatabase();
+        ContentValues values=new ContentValues();
+        values.put(ChatDbContract.SENDER,CommonStaticKeys.ADMIN_UID);
+        values.put(ChatDbContract.RESEVER,MainActivity.getUserData().getUserId());
+        values.put(ChatDbContract.MESSAGE,context.getString(R.string.hello_message));
+        values.put(ChatDbContract.MESSAGE_ID,CommonStaticKeys.ADMIN_UID);
+        values.put(ChatDbContract.DATE_AND_TIME,currentDateandTime);
+        values.put(ChatDbContract.SEEN,true);
 
         database.insertWithOnConflict(TABLE_NAME,null,values,SQLiteDatabase.CONFLICT_REPLACE);
     }
@@ -65,7 +92,7 @@ public class LocalDbUtalis {
 
     }
 
-    public static void clear(Context context)
+    public static void clearChatDb(Context context)
     {
         db=new LocalChatDb(context);
         SQLiteDatabase database= db.getWritableDatabase();
@@ -117,7 +144,17 @@ public class LocalDbUtalis {
         SQLiteDatabase database= db.getReadableDatabase();
         Cursor cursor=database.query(LocalChatDb.TABLE_NAME,null,null,null,null,null,ChatDbContract.DATE_AND_TIME+" DESC ");
 
-        if (cursor.getCount()>0) {
+        if (cursor.getCount()>1) {
+            cursor.moveToPosition(1);
+            String from = cursor.getString(cursor.getColumnIndex(ChatDbContract.SENDER));
+            String to = cursor.getString(cursor.getColumnIndex(ChatDbContract.RESEVER));
+            String message = cursor.getString(cursor.getColumnIndex(ChatDbContract.MESSAGE));
+            String messageID = cursor.getString(cursor.getColumnIndex(ChatDbContract.MESSAGE_ID));
+            cursor.close();
+            db.close();
+            return new Chat(from,to,message,false,messageID,"");
+        }else if (cursor.getCount()==1)
+        {
             cursor.moveToFirst();
             String from = cursor.getString(cursor.getColumnIndex(ChatDbContract.SENDER));
             String to = cursor.getString(cursor.getColumnIndex(ChatDbContract.RESEVER));
@@ -126,7 +163,8 @@ public class LocalDbUtalis {
             cursor.close();
             db.close();
             return new Chat(from,to,message,false,messageID,"");
-        }else {
+        }
+        else{
             cursor.close();
             db.close();
             return null;}

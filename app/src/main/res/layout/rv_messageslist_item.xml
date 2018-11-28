@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/cd_messageCard">
+    android:id="@+id/cd_messageCard"
+    android:layout_margin="@dimen/paddingVerySmall"
+    app:cardCornerRadius="@dimen/paddingMedium">
 
     <android.support.constraint.ConstraintLayout
 
@@ -37,7 +39,7 @@
             android:layout_marginBottom="8dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_unReadedMessages"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintHorizontal_bias=".0"
             app:layout_constraintStart_toEndOf="@+id/img_avatar"
             app:layout_constraintTop_toTopOf="parent">
