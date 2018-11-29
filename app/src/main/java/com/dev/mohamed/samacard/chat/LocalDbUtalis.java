@@ -144,18 +144,8 @@ public class LocalDbUtalis {
         SQLiteDatabase database= db.getReadableDatabase();
         Cursor cursor=database.query(LocalChatDb.TABLE_NAME,null,null,null,null,null,ChatDbContract.DATE_AND_TIME+" DESC ");
 
-        if (cursor.getCount()>1) {
-            cursor.moveToPosition(1);
-            String from = cursor.getString(cursor.getColumnIndex(ChatDbContract.SENDER));
-            String to = cursor.getString(cursor.getColumnIndex(ChatDbContract.RESEVER));
-            String message = cursor.getString(cursor.getColumnIndex(ChatDbContract.MESSAGE));
-            String messageID = cursor.getString(cursor.getColumnIndex(ChatDbContract.MESSAGE_ID));
-            cursor.close();
-            db.close();
-            return new Chat(from,to,message,false,messageID,"");
-        }else if (cursor.getCount()==1)
-        {
-            cursor.moveToFirst();
+        if (cursor.getCount()>0) {
+            cursor.moveToPosition(0);
             String from = cursor.getString(cursor.getColumnIndex(ChatDbContract.SENDER));
             String to = cursor.getString(cursor.getColumnIndex(ChatDbContract.RESEVER));
             String message = cursor.getString(cursor.getColumnIndex(ChatDbContract.MESSAGE));

@@ -59,7 +59,8 @@
         <activity
             android:name=".card.SpecialCardActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".chat.ChatActivity" />
+        <activity android:name=".chat.ChatActivity"
+            android:theme="@style/AppTheme.NoActionBar.NonTransparent"/>
         <activity android:name=".chat.MessagesListActivity"
             android:theme="@style/AppTheme.WithActionBar"
             ></activity>

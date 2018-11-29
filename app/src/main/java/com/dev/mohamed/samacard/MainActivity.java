@@ -186,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
         }
         if (!(isFirst() || data.getEmail().equals(ADMIN_EMAIL))) {
             showOffer();
+
         }
         setLastMessageData();
         isFragmentOpen = false;
@@ -219,8 +220,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
                 numOFUnSeen=LocalDbUtalis.getUnSeenMessagesNum(this,lastChat.getReciver());
                 mainViewchatWithID =lastChat.getReciver();
             }
-            if (lastChat.getSender().equals(CommonStaticKeys.ADMIN_UID) ||lastChat.getReciver().equals(CommonStaticKeys.ADMIN_UID))
-                userName=CommonStaticKeys.APP_NAME;
+
 
             if (numOFUnSeen>0)
             {
@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
                 tvLastMessage.setTextColor(Color.GRAY);
                 Picasso.with(this).load(avatar).placeholder(R.drawable.loading).into(imgAvatar);
             }else {
-                tvUserName.setText("User");
+                tvUserName.setText(R.string.user);
                 tvUserName.setTextColor(Color.RED);
                 tvLastMessage.setText(lastChat.getMeassage());
                 tvLastMessage.setTextColor(Color.GRAY);
@@ -309,6 +309,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
             Editor editor = annoncementPrefrence.edit();
             editor.putBoolean(KEY_ISFIRST_PREF, false);
             editor.apply();
+            LocalDbUtalis.sendHelloMessage(this);
         }
         return isFirst;
     }
@@ -435,7 +436,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
             }
         }
         isCardsLoaded=true;
-        LocalDbUtalis.sendHelloMessage(this);
+
         setLastMessageData();
     }
     @Override
@@ -485,7 +486,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
             }
         });
     }
-
+    @Override
     public void onConnectionChange(ConnectivityEvent event) {
         if (event.getState().getValue() == ConnectivityState.CONNECTED) {
             isConnected = true;
@@ -493,7 +494,7 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
             isConnected = false;
         }
     }
-
+    @Override
     protected void onStart() {
         super.onStart();
         ConnectionBuddy.getInstance().registerForConnectivityEvents(this, this);
@@ -503,13 +504,13 @@ public class MainActivity extends AppCompatActivity implements DataBaseUtilies.o
         isFirst();
         invalidateOptionsMenu();
     }
-
+    @Override
     protected void onResume() {
         super.onResume();
         invalidateOptionsMenu();
         loadData();
     }
-
+    @Override
     protected void onStop() {
         super.onStop();
         ConnectionBuddy.getInstance().unregisterFromConnectivityEvents(this);

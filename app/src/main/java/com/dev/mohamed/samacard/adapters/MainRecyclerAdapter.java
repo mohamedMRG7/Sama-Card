@@ -105,6 +105,7 @@ public class MainRecyclerAdapter extends Adapter<MainRecyclerAdapter.MainRecycel
         if (this.cursor.getString(this.cursor.getColumnIndex(CardDataEntry.CARDTYPE)).equals(CommonStaticKeys.SPECIAL_CARD)) {
             holder.banner.setVisibility(View.VISIBLE);
         }
+
        // Glide.with(this.context).load(logo).apply(new RequestOptions().placeholder(R.drawable.loading).error(R.drawable.ic_error)).into(holder.logo);
         Picasso.with(context).load(logo).placeholder(R.drawable.loading).error(R.drawable.ic_error).into(holder.logo);
         holder.userName.setText(userName);
